@@ -117,15 +117,33 @@
 
 <section id="paqueteria" style="border-bottom:none;">
   <div class="wrap">
-    <div class="highlight-banner">
-      <div class="hb-inner">
-        <span class="hb-tag">Servicio destacado</span>
+    <div class="parcel-card">
+      <div class="parcel-head">
+        <span class="eyebrow">Servicio destacado</span>
         <h3>Recogida y entrega de paquetes</h3>
-        <p>Gestionamos la recepción y entrega de sus paquetes de mensajería directamente en el establecimiento, para que pueda recogerlos cuando le venga bien, sin esperar en casa.</p>
-        <div class="hb-stats">
-          <div class="hb-stat"><strong>Recogida</strong><span>en el propio local</span></div>
-          <div class="hb-stat"><strong>Entrega</strong><span>de envíos de mensajería</span></div>
-          <div class="hb-stat"><strong>Horario</strong><span>comercial habitual</span></div>
+        <p>Gestionamos la recepción y entrega de sus envíos de mensajería directamente en el establecimiento, para que pueda recogerlos cuando le venga bien, sin esperar en casa.</p>
+      </div>
+      <div class="parcel-steps">
+        <div class="parcel-step">
+          <span class="ps-num">1</span>
+          <div>
+            <strong>Su paquete llega a la tienda</strong>
+            <p>La mensajería entrega el envío directamente en el establecimiento.</p>
+          </div>
+        </div>
+        <div class="parcel-step">
+          <span class="ps-num">2</span>
+          <div>
+            <strong>Se lo guardamos</strong>
+            <p>Su pedido queda en el mostrador, listo para cuando pueda pasar.</p>
+          </div>
+        </div>
+        <div class="parcel-step">
+          <span class="ps-num">3</span>
+          <div>
+            <strong>Lo recoge cuando quiera</strong>
+            <p>En nuestro horario habitual, sin cita previa ni esperas en casa.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -140,138 +158,164 @@
       <p>Gracias a nuestro proveedor, podemos traer bajo pedido los productos que necesites, con entrega en un día. Elige lo que quieras reservar y confirma tu pedido.</p>
     </div>
 
-    <div class="reserve-grid">
-      <div class="reserve-card" data-product="Pan de horno" data-unit="unidad">
-        <span class="tag">Panadería</span>
-        <h3>Pan de horno</h3>
-        <p class="unit">Por unidad</p>
-        <div class="qty-control">
-          <button type="button" class="qty-add">Añadir a la reserva</button>
-          <div class="qty-stepper" hidden>
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad">−</button>
+    <div class="reserve-layout">
+      <div class="reserve-carousel">
+        <button type="button" class="carousel-arrow prev" id="reserve-prev" aria-label="Ver productos anteriores">‹</button>
+        <div class="reserve-catalog" id="reserve-catalog">
+      <div class="reserve-row" data-product="Pan de horno" data-unit="unidad">
+        <div class="rr-info">
+          <span class="tag">Panadería</span>
+          <h3>Pan de horno</h3>
+          <p class="unit">Por unidad</p>
+        </div>
+        <div class="rr-controls">
+          <div class="qty-stepper">
+            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
             <span class="qty-value">1</span>
             <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
           </div>
+          <button type="button" class="qty-add">Añadir</button>
         </div>
       </div>
 
-      <div class="reserve-card" data-product="Leche entera 1L" data-unit="unidad">
-        <span class="tag">Básicos</span>
-        <h3>Leche entera 1L</h3>
-        <p class="unit">Por unidad</p>
-        <div class="qty-control">
-          <button type="button" class="qty-add">Añadir a la reserva</button>
-          <div class="qty-stepper" hidden>
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad">−</button>
+      <div class="reserve-row" data-product="Leche entera 1L" data-unit="unidad">
+        <div class="rr-info">
+          <span class="tag">Básicos</span>
+          <h3>Leche entera 1L</h3>
+          <p class="unit">Por unidad</p>
+        </div>
+        <div class="rr-controls">
+          <div class="qty-stepper">
+            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
             <span class="qty-value">1</span>
             <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
           </div>
+          <button type="button" class="qty-add">Añadir</button>
         </div>
       </div>
 
-      <div class="reserve-card" data-product="Huevos (docena)" data-unit="docena">
-        <span class="tag">Básicos</span>
-        <h3>Huevos</h3>
-        <p class="unit">Por docena</p>
-        <div class="qty-control">
-          <button type="button" class="qty-add">Añadir a la reserva</button>
-          <div class="qty-stepper" hidden>
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad">−</button>
+      <div class="reserve-row" data-product="Huevos (docena)" data-unit="docena">
+        <div class="rr-info">
+          <span class="tag">Básicos</span>
+          <h3>Huevos</h3>
+          <p class="unit">Por docena</p>
+        </div>
+        <div class="rr-controls">
+          <div class="qty-stepper">
+            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
             <span class="qty-value">1</span>
             <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
           </div>
+          <button type="button" class="qty-add">Añadir</button>
         </div>
       </div>
 
-      <div class="reserve-card" data-product="Agua mineral 1,5L (pack 6)" data-unit="pack">
-        <span class="tag">Bebidas</span>
-        <h3>Agua mineral 1,5L</h3>
-        <p class="unit">Pack de 6</p>
-        <div class="qty-control">
-          <button type="button" class="qty-add">Añadir a la reserva</button>
-          <div class="qty-stepper" hidden>
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad">−</button>
+      <div class="reserve-row" data-product="Agua mineral 1,5L (pack 6)" data-unit="pack">
+        <div class="rr-info">
+          <span class="tag">Bebidas</span>
+          <h3>Agua mineral 1,5L</h3>
+          <p class="unit">Pack de 6</p>
+        </div>
+        <div class="rr-controls">
+          <div class="qty-stepper">
+            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
             <span class="qty-value">1</span>
             <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
           </div>
+          <button type="button" class="qty-add">Añadir</button>
         </div>
       </div>
 
-      <div class="reserve-card" data-product="Fruta de temporada" data-unit="kg">
-        <span class="tag">Frutería</span>
-        <h3>Fruta de temporada</h3>
-        <p class="unit">Por kilo</p>
-        <div class="qty-control">
-          <button type="button" class="qty-add">Añadir a la reserva</button>
-          <div class="qty-stepper" hidden>
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad">−</button>
+      <div class="reserve-row" data-product="Fruta de temporada" data-unit="kg">
+        <div class="rr-info">
+          <span class="tag">Frutería</span>
+          <h3>Fruta de temporada</h3>
+          <p class="unit">Por kilo</p>
+        </div>
+        <div class="rr-controls">
+          <div class="qty-stepper">
+            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
             <span class="qty-value">1</span>
             <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
           </div>
+          <button type="button" class="qty-add">Añadir</button>
         </div>
       </div>
 
-      <div class="reserve-card" data-product="Verdura de temporada" data-unit="kg">
-        <span class="tag">Verdulería</span>
-        <h3>Verdura de temporada</h3>
-        <p class="unit">Por kilo</p>
-        <div class="qty-control">
-          <button type="button" class="qty-add">Añadir a la reserva</button>
-          <div class="qty-stepper" hidden>
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad">−</button>
+      <div class="reserve-row" data-product="Verdura de temporada" data-unit="kg">
+        <div class="rr-info">
+          <span class="tag">Verdulería</span>
+          <h3>Verdura de temporada</h3>
+          <p class="unit">Por kilo</p>
+        </div>
+        <div class="rr-controls">
+          <div class="qty-stepper">
+            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
             <span class="qty-value">1</span>
             <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
           </div>
+          <button type="button" class="qty-add">Añadir</button>
         </div>
       </div>
 
-      <div class="reserve-card" data-product="Detergente para lavadora" data-unit="unidad">
-        <span class="tag">Droguería</span>
-        <h3>Detergente lavadora</h3>
-        <p class="unit">Por unidad</p>
-        <div class="qty-control">
-          <button type="button" class="qty-add">Añadir a la reserva</button>
-          <div class="qty-stepper" hidden>
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad">−</button>
+      <div class="reserve-row" data-product="Detergente para lavadora" data-unit="unidad">
+        <div class="rr-info">
+          <span class="tag">Droguería</span>
+          <h3>Detergente lavadora</h3>
+          <p class="unit">Por unidad</p>
+        </div>
+        <div class="rr-controls">
+          <div class="qty-stepper">
+            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
             <span class="qty-value">1</span>
             <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
           </div>
+          <button type="button" class="qty-add">Añadir</button>
         </div>
       </div>
 
-      <div class="reserve-card" data-product="Papel higiénico (pack 12)" data-unit="pack">
-        <span class="tag">Droguería</span>
-        <h3>Papel higiénico</h3>
-        <p class="unit">Pack de 12</p>
-        <div class="qty-control">
-          <button type="button" class="qty-add">Añadir a la reserva</button>
-          <div class="qty-stepper" hidden>
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad">−</button>
+      <div class="reserve-row" data-product="Papel higiénico (pack 12)" data-unit="pack">
+        <div class="rr-info">
+          <span class="tag">Droguería</span>
+          <h3>Papel higiénico</h3>
+          <p class="unit">Pack de 12</p>
+        </div>
+        <div class="rr-controls">
+          <div class="qty-stepper">
+            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
             <span class="qty-value">1</span>
             <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
           </div>
+          <button type="button" class="qty-add">Añadir</button>
         </div>
       </div>
-    </div>
-
-    <div class="reserve-summary">
-      <div>
-        <h3>Tu reserva</h3>
-        <ul class="reserve-summary-list" id="reserve-summary-list">
-          <li class="reserve-empty" style="list-style:none; background:none; border:none; padding:0;">Todavía no has añadido ningún producto.</li>
-        </ul>
+        </div>
+        <button type="button" class="carousel-arrow next" id="reserve-next" aria-label="Ver más productos">›</button>
       </div>
-      <form id="reserve-form" action="https://formspree.io/f/TU_ID_DE_FORMSPREE" method="POST">
-        <label for="r-name">Nombre</label>
-        <input type="text" id="r-name" name="nombre" placeholder="Tu nombre" required>
-        <label for="r-phone">Teléfono</label>
-        <input type="tel" id="r-phone" name="telefono" placeholder="Tu teléfono de contacto" required>
-        <label for="r-order">Pedido</label>
-        <textarea id="r-order" name="pedido" readonly required placeholder="Añade productos arriba para verlos aquí"></textarea>
-        <input type="hidden" name="_subject" value="Nueva reserva de productos — Minimarket La Prensa">
-        <button type="submit" id="reserve-submit" class="btn btn-primary" disabled>Confirmar reserva</button>
-        <p class="reserve-note">Te confirmaremos la disponibilidad y el día de entrega por teléfono.</p>
-      </form>
+
+      <div class="reserve-cart" id="reserve-summary-anchor">
+        <div class="reserve-cart-main">
+          <div class="reserve-cart-head">
+            <h3>Tu reserva</h3>
+            <span id="reserve-cart-count">0 productos</span>
+          </div>
+          <ul class="reserve-summary-list" id="reserve-summary-list"></ul>
+          <p class="reserve-empty" id="reserve-empty-msg">Todavía no has añadido ningún producto.</p>
+        </div>
+
+        <form id="reserve-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="e2390145-9940-473c-a70a-e7632bccad72">
+          <input type="hidden" name="subject" value="Nueva reserva de productos — Minimarket La Prensa">
+          <input type="hidden" name="from_name" value="Web Minimarket La Prensa">
+          <label for="r-name">Nombre</label>
+          <input type="text" id="r-name" name="nombre" placeholder="Tu nombre" required>
+          <label for="r-phone">Teléfono</label>
+          <input type="tel" id="r-phone" name="telefono" placeholder="Tu teléfono de contacto" required>
+          <input type="hidden" id="r-order" name="pedido">
+          <button type="submit" id="reserve-submit" class="btn btn-primary" disabled>Confirmar reserva</button>
+          <p class="reserve-note">Te confirmaremos la disponibilidad y el día de entrega por teléfono.</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -383,6 +427,11 @@
     <div class="credit">Web por <a href="#" target="_blank" rel="noopener">Aretia</a></div>
   </div>
 </footer>
+
+<button id="reserve-floating-btn" class="floating-reserve-btn" hidden>
+  Ver reserva
+  <span id="reserve-floating-count" class="floating-reserve-count">0</span>
+</button>
 
 <script src="assets/js/main.js"></script>
 </body>
