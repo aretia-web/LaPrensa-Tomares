@@ -17,3 +17,148 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
+/* ===== RESERVA DE PRODUCTOS ===== */
+const cart = {}; // { "Nombre producto": { qty, unit } }
+
+const summaryList  = document.getElementById('reserve-summary-list');
+const emptyMsg     = document.getElementById('reserve-empty-msg');
+const cartCount    = document.getElementById('reserve-cart-count');
+const orderField   = document.getElementById('r-order');
+const submitBtn    = document.getElementById('reserve-submit');
+
+// Guardamos una referencia a cada fila de producto por nombre, para poder
+// resetearla desde el botón "quitar" del carrito.
+const rowsByProduct = {};
+
+function resetRow(name) {
+  const row = rowsByProduct[name];
+  if (!row) return;
+  row.addBtn.textContent = 'Añadir';
+  row.addBtn.classList.remove('is-added');
+  row.qty = 1;
+  row.valueEl.textContent = 1;
+  row.minusBtn.disabled = true;
+}
+
+function renderSummary() {
+  const entries = Object.entries(cart);
+
+  cartCount.textContent = entries.length === 1 ? '1 producto' : `${entries.length} productos`;
+
+  if (entries.length === 0) {
+    summaryList.innerHTML = '';
+    emptyMsg.hidden = false;
+    orderField.value = '';
+    submitBtn.disabled = true;
+    return;
+  }
+
+  emptyMsg.hidden = true;
+  summaryList.innerHTML = entries.map(([name, data]) => `
+    <li data-product="${name}">
+      <span class="item-name">${name}</span>
+      <span class="item-qty">${data.qty} ${data.unit}</span>
+      <button type="button" class="item-remove" aria-label="Quitar ${name} de la reserva">×</button>
+    </li>
+  `).join('');
+
+  summaryList.querySelectorAll('.item-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.closest('li').dataset.product;
+      delete cart[name];
+      resetRow(name);
+      renderSummary();
+    });
+  });
+
+  orderField.value = entries.map(([name, data]) => `${name} — ${data.qty} ${data.unit}`).join('\n');
+  submitBtn.disabled = false;
+}
+
+document.querySelectorAll('.reserve-row').forEach(row => {
+  const name     = row.dataset.product;
+  const unit     = row.dataset.unit;
+  const addBtn   = row.querySelector('.qty-add');
+  const minusBtn = row.querySelector('.qty-minus');
+  const plusBtn  = row.querySelector('.qty-plus');
+  const valueEl  = row.querySelector('.qty-value');
+
+  const state = { qty: 1, addBtn, minusBtn, valueEl };
+  rowsByProduct[name] = state;
+
+  function syncCartIfAdded() {
+    if (cart[name]) {
+      cart[name].qty = state.qty;
+      renderSummary();
+    }
+  }
+
+  plusBtn.addEventListener('click', () => {
+    state.qty += 1;
+    valueEl.textContent = state.qty;
+    minusBtn.disabled = false;
+    syncCartIfAdded();
+  });
+
+  minusBtn.addEventListener('click', () => {
+    if (state.qty <= 1) return;
+    state.qty -= 1;
+    valueEl.textContent = state.qty;
+    minusBtn.disabled = state.qty <= 1;
+    syncCartIfAdded();
+  });
+
+  addBtn.addEventListener('click', () => {
+    if (cart[name]) {
+      delete cart[name];
+      addBtn.textContent = 'Añadir';
+      addBtn.classList.remove('is-added');
+    } else {
+      cart[name] = { qty: state.qty, unit };
+      addBtn.textContent = 'Quitar';
+      addBtn.classList.add('is-added');
+    }
+    renderSummary();
+  });
+});
+
+renderSummary();
+
+/* ===== FLECHAS DEL CARRUSEL DE PRODUCTOS ===== */
+const catalogTrack = document.getElementById('reserve-catalog');
+const prevArrow    = document.getElementById('reserve-prev');
+const nextArrow    = document.getElementById('reserve-next');
+
+function scrollCatalog(direction) {
+  const cardWidth = catalogTrack.querySelector('.reserve-row')?.offsetWidth || 220;
+  catalogTrack.scrollBy({ left: direction * (cardWidth + 16) * 2, behavior: 'smooth' });
+}
+
+prevArrow.addEventListener('click', () => scrollCatalog(-1));
+nextArrow.addEventListener('click', () => scrollCatalog(1));
+
+/* ===== BOTÓN FLOTANTE "VER RESERVA" ===== */
+const floatingBtn = document.getElementById('reserve-floating-btn');
+const floatingCount = document.getElementById('reserve-floating-count');
+
+function updateFloatingButton() {
+  const totalItems = Object.keys(cart).length;
+  if (totalItems > 0) {
+    floatingBtn.hidden = false;
+    floatingCount.textContent = totalItems;
+  } else {
+    floatingBtn.hidden = true;
+  }
+}
+
+floatingBtn.addEventListener('click', () => {
+  document.getElementById('reserve-summary-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// Enganchamos la actualización del botón flotante a cada cambio de renderSummary
+const originalRenderSummary = renderSummary;
+renderSummary = function () {
+  originalRenderSummary();
+  updateFloatingButton();
+};
+
