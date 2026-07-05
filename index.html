@@ -19,6 +19,7 @@
     <div class="links">
       <a href="#productos">Productos</a>
       <a href="#paqueteria">Paquetería</a>
+      <a href="#reserva">Reservar productos</a>
       <a href="#horario">Horario</a>
       <a href="#opiniones">Opiniones</a>
       <a href="#contacto" class="nav-cta">Cómo llegar</a>
@@ -158,138 +159,180 @@
     </div>
 
     <div class="reserve-layout">
-      <div class="reserve-carousel">
-        <button type="button" class="carousel-arrow prev" id="reserve-prev" aria-label="Ver productos anteriores">‹</button>
-        <div class="reserve-catalog" id="reserve-catalog">
-      <div class="reserve-row" data-product="Pan de horno" data-unit="unidad">
-        <div class="rr-info">
-          <span class="tag">Panadería</span>
-          <h3>Pan de horno</h3>
-          <p class="unit">Por unidad</p>
-        </div>
-        <div class="rr-controls">
-          <div class="qty-stepper">
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-            <span class="qty-value">1</span>
-            <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+      <div class="reserve-categories">
+      <div class="reserve-category">
+        <h3 class="category-title">Panadería</h3>
+        <div class="reserve-carousel">
+          <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Panadería">‹</button>
+          <div class="reserve-catalog">
+          <div class="reserve-row" data-product="Pan de horno" data-unit="unidad">
+            <div class="rr-info">
+              <h3>Pan de horno</h3>
+              <p class="unit">Por unidad</p>
+            </div>
+            <div class="rr-controls">
+              <div class="qty-stepper">
+                <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
+                <span class="qty-value">1</span>
+                <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+              </div>
+              <button type="button" class="qty-add">Añadir</button>
+            </div>
           </div>
-          <button type="button" class="qty-add">Añadir</button>
+          </div>
+          <button type="button" class="carousel-arrow next" aria-label="Ver más de Panadería">›</button>
         </div>
       </div>
 
-      <div class="reserve-row" data-product="Leche entera 1L" data-unit="unidad">
-        <div class="rr-info">
-          <span class="tag">Básicos</span>
-          <h3>Leche entera 1L</h3>
-          <p class="unit">Por unidad</p>
-        </div>
-        <div class="rr-controls">
-          <div class="qty-stepper">
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-            <span class="qty-value">1</span>
-            <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+      <div class="reserve-category">
+        <h3 class="category-title">Básicos</h3>
+        <div class="reserve-carousel">
+          <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Básicos">‹</button>
+          <div class="reserve-catalog">
+          <div class="reserve-row" data-product="Leche entera 1L" data-unit="unidad">
+            <div class="rr-info">
+              <h3>Leche entera 1L</h3>
+              <p class="unit">Por unidad</p>
+            </div>
+            <div class="rr-controls">
+              <div class="qty-stepper">
+                <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
+                <span class="qty-value">1</span>
+                <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+              </div>
+              <button type="button" class="qty-add">Añadir</button>
+            </div>
           </div>
-          <button type="button" class="qty-add">Añadir</button>
+
+          <div class="reserve-row" data-product="Huevos (docena)" data-unit="docena">
+            <div class="rr-info">
+              <h3>Huevos</h3>
+              <p class="unit">Por docena</p>
+            </div>
+            <div class="rr-controls">
+              <div class="qty-stepper">
+                <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
+                <span class="qty-value">1</span>
+                <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+              </div>
+              <button type="button" class="qty-add">Añadir</button>
+            </div>
+          </div>
+          </div>
+          <button type="button" class="carousel-arrow next" aria-label="Ver más de Básicos">›</button>
         </div>
       </div>
 
-      <div class="reserve-row" data-product="Huevos (docena)" data-unit="docena">
-        <div class="rr-info">
-          <span class="tag">Básicos</span>
-          <h3>Huevos</h3>
-          <p class="unit">Por docena</p>
-        </div>
-        <div class="rr-controls">
-          <div class="qty-stepper">
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-            <span class="qty-value">1</span>
-            <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+      <div class="reserve-category">
+        <h3 class="category-title">Bebidas</h3>
+        <div class="reserve-carousel">
+          <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Bebidas">‹</button>
+          <div class="reserve-catalog">
+          <div class="reserve-row" data-product="Agua mineral 1,5L (pack 6)" data-unit="pack">
+            <div class="rr-info">
+              <h3>Agua mineral 1,5L</h3>
+              <p class="unit">Pack de 6</p>
+            </div>
+            <div class="rr-controls">
+              <div class="qty-stepper">
+                <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
+                <span class="qty-value">1</span>
+                <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+              </div>
+              <button type="button" class="qty-add">Añadir</button>
+            </div>
           </div>
-          <button type="button" class="qty-add">Añadir</button>
+          </div>
+          <button type="button" class="carousel-arrow next" aria-label="Ver más de Bebidas">›</button>
         </div>
       </div>
 
-      <div class="reserve-row" data-product="Agua mineral 1,5L (pack 6)" data-unit="pack">
-        <div class="rr-info">
-          <span class="tag">Bebidas</span>
-          <h3>Agua mineral 1,5L</h3>
-          <p class="unit">Pack de 6</p>
-        </div>
-        <div class="rr-controls">
-          <div class="qty-stepper">
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-            <span class="qty-value">1</span>
-            <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+      <div class="reserve-category">
+        <h3 class="category-title">Frutería</h3>
+        <div class="reserve-carousel">
+          <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Frutería">‹</button>
+          <div class="reserve-catalog">
+          <div class="reserve-row" data-product="Fruta de temporada" data-unit="kg">
+            <div class="rr-info">
+              <h3>Fruta de temporada</h3>
+              <p class="unit">Por kilo</p>
+            </div>
+            <div class="rr-controls">
+              <div class="qty-stepper">
+                <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
+                <span class="qty-value">1</span>
+                <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+              </div>
+              <button type="button" class="qty-add">Añadir</button>
+            </div>
           </div>
-          <button type="button" class="qty-add">Añadir</button>
+          </div>
+          <button type="button" class="carousel-arrow next" aria-label="Ver más de Frutería">›</button>
         </div>
       </div>
 
-      <div class="reserve-row" data-product="Fruta de temporada" data-unit="kg">
-        <div class="rr-info">
-          <span class="tag">Frutería</span>
-          <h3>Fruta de temporada</h3>
-          <p class="unit">Por kilo</p>
-        </div>
-        <div class="rr-controls">
-          <div class="qty-stepper">
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-            <span class="qty-value">1</span>
-            <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+      <div class="reserve-category">
+        <h3 class="category-title">Verdulería</h3>
+        <div class="reserve-carousel">
+          <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Verdulería">‹</button>
+          <div class="reserve-catalog">
+          <div class="reserve-row" data-product="Verdura de temporada" data-unit="kg">
+            <div class="rr-info">
+              <h3>Verdura de temporada</h3>
+              <p class="unit">Por kilo</p>
+            </div>
+            <div class="rr-controls">
+              <div class="qty-stepper">
+                <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
+                <span class="qty-value">1</span>
+                <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+              </div>
+              <button type="button" class="qty-add">Añadir</button>
+            </div>
           </div>
-          <button type="button" class="qty-add">Añadir</button>
+          </div>
+          <button type="button" class="carousel-arrow next" aria-label="Ver más de Verdulería">›</button>
         </div>
       </div>
 
-      <div class="reserve-row" data-product="Verdura de temporada" data-unit="kg">
-        <div class="rr-info">
-          <span class="tag">Verdulería</span>
-          <h3>Verdura de temporada</h3>
-          <p class="unit">Por kilo</p>
-        </div>
-        <div class="rr-controls">
-          <div class="qty-stepper">
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-            <span class="qty-value">1</span>
-            <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+      <div class="reserve-category">
+        <h3 class="category-title">Droguería</h3>
+        <div class="reserve-carousel">
+          <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Droguería">‹</button>
+          <div class="reserve-catalog">
+          <div class="reserve-row" data-product="Detergente para lavadora" data-unit="unidad">
+            <div class="rr-info">
+              <h3>Detergente lavadora</h3>
+              <p class="unit">Por unidad</p>
+            </div>
+            <div class="rr-controls">
+              <div class="qty-stepper">
+                <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
+                <span class="qty-value">1</span>
+                <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+              </div>
+              <button type="button" class="qty-add">Añadir</button>
+            </div>
           </div>
-          <button type="button" class="qty-add">Añadir</button>
-        </div>
-      </div>
 
-      <div class="reserve-row" data-product="Detergente para lavadora" data-unit="unidad">
-        <div class="rr-info">
-          <span class="tag">Droguería</span>
-          <h3>Detergente lavadora</h3>
-          <p class="unit">Por unidad</p>
-        </div>
-        <div class="rr-controls">
-          <div class="qty-stepper">
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-            <span class="qty-value">1</span>
-            <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+          <div class="reserve-row" data-product="Papel higiénico (pack 12)" data-unit="pack">
+            <div class="rr-info">
+              <h3>Papel higiénico</h3>
+              <p class="unit">Pack de 12</p>
+            </div>
+            <div class="rr-controls">
+              <div class="qty-stepper">
+                <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
+                <span class="qty-value">1</span>
+                <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
+              </div>
+              <button type="button" class="qty-add">Añadir</button>
+            </div>
           </div>
-          <button type="button" class="qty-add">Añadir</button>
+          </div>
+          <button type="button" class="carousel-arrow next" aria-label="Ver más de Droguería">›</button>
         </div>
       </div>
-
-      <div class="reserve-row" data-product="Papel higiénico (pack 12)" data-unit="pack">
-        <div class="rr-info">
-          <span class="tag">Droguería</span>
-          <h3>Papel higiénico</h3>
-          <p class="unit">Pack de 12</p>
-        </div>
-        <div class="rr-controls">
-          <div class="qty-stepper">
-            <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-            <span class="qty-value">1</span>
-            <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-          </div>
-          <button type="button" class="qty-add">Añadir</button>
-        </div>
-      </div>
-        </div>
-        <button type="button" class="carousel-arrow next" id="reserve-next" aria-label="Ver más productos">›</button>
       </div>
 
       <div class="reserve-cart" id="reserve-summary-anchor">
@@ -311,7 +354,8 @@
           <label for="r-phone">Teléfono</label>
           <input type="tel" id="r-phone" name="telefono" placeholder="Tu teléfono de contacto" required>
           <input type="hidden" id="r-order" name="pedido">
-          <button type="submit" id="reserve-submit" class="btn btn-primary" disabled>Confirmar reserva</button>
+          <button type="submit" id="reserve-submit" class="btn btn-primary">Confirmar reserva</button>
+          <p class="reserve-error" id="reserve-error" hidden>Necesitas completar todos los campos para confirmar la reserva.</p>
           <p class="reserve-note">Te confirmaremos la disponibilidad y el día de entrega por teléfono.</p>
         </form>
       </div>

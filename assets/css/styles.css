@@ -1,6 +1,6 @@
 /* ===== TOKENS ===== */
 :root {
-  --paper: #F8F9FB;
+  --paper: #FFFFFF;
   --ink: #1C2B3A;
   --blue: #234C73;
   --blue-light: #35688F;
@@ -110,7 +110,7 @@ nav .links a:hover { opacity: 1; }
 .eyebrow::before {
   content: ''; display: inline-block;
   width: 8px; height: 8px;
-  background: var(--blue); border-radius: 50%;
+  background: var(--red); border-radius: 50%;
 }
 .hero .eyebrow { color: #fff; }
 
@@ -146,7 +146,8 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
   padding: 8px 18px 8px 10px; margin-bottom: 36px;
   font-size: 0.92rem; font-weight: 600;
 }
-.rating-pill .stars { color: var(--blue); letter-spacing: 1px; font-size: 0.95rem; }
+.rating-pill .stars { color: var(--red); letter-spacing: 1px; font-size: 0.95rem; }
+.rating-pill .score { font-family: 'Fraunces', serif; font-weight: 700; }
 .rating-pill .count { font-weight: 500; color: rgba(28, 43, 58, 0.55); }
 
 .hero-ctas {
@@ -190,7 +191,8 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
   font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; margin-bottom: 4px;
 }
 .info-strip .info-item p { font-size: 0.85rem; color: rgba(28, 43, 58, 0.6); }
-.info-strip .info-item h4 { color: rgba(0, 0, 0, 0.6); }
+.info-strip .info-item h4 { color: rgba(0, 3, 5, 0.6) }
+
 
 /* ===== SECTION HEADS ===== */
 .section-head { margin-bottom: 48px; text-align: center; }
@@ -222,7 +224,8 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
 
 /* Featured card — recogida y entrega de paquetes */
 .service-card.is-featured {
-  background: var(--blue); color: var(--paper);
+  background: var(--red); color: #fff;
+  box-shadow: inset 0 4px 0 var(--blue);
 }
 .service-card.is-featured .tag { color: var(--tint); opacity: 0.85; }
 .service-card.is-featured h3 { color: var(--paper); }
@@ -269,7 +272,7 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
 .rating-summary .big-score {
   font-family: 'Fraunces', serif; font-weight: 700; font-size: 3.4rem; line-height: 1; color: var(--blue);
 }
-.rating-summary .rs-detail .stars { color: var(--blue); font-size: 1.1rem; letter-spacing: 2px; }
+.rating-summary .rs-detail .stars { color: var(--red); font-size: 1.1rem; letter-spacing: 2px; }
 .rating-summary .rs-detail p { font-size: 0.9rem; color: rgba(28, 43, 58, 0.6); margin-top: 4px; }
 
 .reviews {
@@ -278,7 +281,7 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
   border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
 }
 .review-card { background: var(--paper); padding: 28px 26px; }
-.review-card .stars { color: var(--blue); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 12px; display: block; }
+.review-card .stars { color: var(--red); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 12px; display: block; }
 .review-card p.quote { font-size: 0.95rem; color: var(--ink); margin-bottom: 14px; }
 .review-card .author {
   font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
@@ -353,8 +356,18 @@ form input, form textarea {
 }
 form input:focus, form textarea:focus { border-color: var(--blue); }
 form textarea { resize: vertical; min-height: 100px; }
+form button { margin-top: 6px; cursor: pointer; }
+form button:disabled { opacity: 0.5; cursor: not-allowed; }
+
 /* ===== RESERVA DE PRODUCTOS ===== */
 .reserve-layout { display: flex; flex-direction: column; gap: 28px; }
+
+.reserve-categories { display: flex; flex-direction: column; gap: 30px; }
+.reserve-category .category-title {
+  font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem;
+  color: var(--ink); border-left: 3px solid var(--blue);
+  padding-left: 12px; margin-bottom: 14px;
+}
 
 /* Catálogo: carrusel horizontal, flechas en el flujo normal */
 .reserve-carousel { display: flex; align-items: stretch; gap: 12px; }
@@ -467,6 +480,9 @@ form textarea { resize: vertical; min-height: 100px; }
 .reserve-cart form button[type="submit"] { background: var(--red); border-color: var(--red); width: 100%; justify-content: center; }
 .reserve-cart form button[type="submit"]:hover:not(:disabled) { background: var(--red-light); box-shadow: 0 6px 20px rgba(166, 48, 60, 0.3); }
 .reserve-note { font-size: 0.8rem; color: rgba(28, 43, 58, 0.5); }
+.reserve-error {
+  font-size: 0.85rem; font-weight: 600; color: var(--red);
+}
 
 @media (max-width: 800px) {
   .reserve-cart { grid-template-columns: 1fr; }
@@ -508,6 +524,7 @@ footer .credit a:hover { color: var(--blue); }
 @media (max-width: 800px) {
   .services { grid-template-columns: 1fr; }
   .reviews { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
   .hours-wrap { grid-template-columns: 1fr; }
   .info-strip { grid-template-columns: repeat(2, 1fr); }
   .info-strip .info-item:nth-child(2) { border-right: none; }

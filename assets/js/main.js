@@ -49,7 +49,6 @@ function renderSummary() {
     summaryList.innerHTML = '';
     emptyMsg.hidden = false;
     orderField.value = '';
-    submitBtn.disabled = true;
     return;
   }
 
@@ -72,7 +71,6 @@ function renderSummary() {
   });
 
   orderField.value = entries.map(([name, data]) => `${name} — ${data.qty} ${data.unit}`).join('\n');
-  submitBtn.disabled = false;
 }
 
 document.querySelectorAll('.reserve-row').forEach(row => {
@@ -124,18 +122,20 @@ document.querySelectorAll('.reserve-row').forEach(row => {
 
 renderSummary();
 
-/* ===== FLECHAS DEL CARRUSEL DE PRODUCTOS ===== */
-const catalogTrack = document.getElementById('reserve-catalog');
-const prevArrow    = document.getElementById('reserve-prev');
-const nextArrow    = document.getElementById('reserve-next');
+/* ===== FLECHAS DE CADA MINI-PASARELA POR CATEGORÍA ===== */
+document.querySelectorAll('.reserve-carousel').forEach(carousel => {
+  const track = carousel.querySelector('.reserve-catalog');
+  const prevArrow = carousel.querySelector('.carousel-arrow.prev');
+  const nextArrow = carousel.querySelector('.carousel-arrow.next');
 
-function scrollCatalog(direction) {
-  const cardWidth = catalogTrack.querySelector('.reserve-row')?.offsetWidth || 220;
-  catalogTrack.scrollBy({ left: direction * (cardWidth + 16) * 2, behavior: 'smooth' });
-}
+  function scrollTrack(direction) {
+    const cardWidth = track.querySelector('.reserve-row')?.offsetWidth || 220;
+    track.scrollBy({ left: direction * (cardWidth + 16) * 2, behavior: 'smooth' });
+  }
 
-prevArrow.addEventListener('click', () => scrollCatalog(-1));
-nextArrow.addEventListener('click', () => scrollCatalog(1));
+  prevArrow.addEventListener('click', () => scrollTrack(-1));
+  nextArrow.addEventListener('click', () => scrollTrack(1));
+});
 
 /* ===== BOTÓN FLOTANTE "VER RESERVA" ===== */
 const floatingBtn = document.getElementById('reserve-floating-btn');
@@ -161,4 +161,26 @@ renderSummary = function () {
   originalRenderSummary();
   updateFloatingButton();
 };
+
+/* ===== VALIDACIÓN DEL FORMULARIO DE RESERVA ===== */
+const reserveForm  = document.getElementById('reserve-form');
+const reserveError = document.getElementById('reserve-error');
+
+reserveForm.addEventListener('submit', (event) => {
+  const cartIsEmpty = Object.keys(cart).length === 0;
+
+  if (cartIsEmpty || !reserveForm.checkValidity()) {
+    event.preventDefault();
+    reserveError.hidden = false;
+  } else {
+    reserveError.hidden = true;
+  }
+});
+
+// Ocultamos el aviso en cuanto el cliente empieza a corregir los campos
+reserveForm.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', () => {
+    reserveError.hidden = true;
+  });
+});
 
