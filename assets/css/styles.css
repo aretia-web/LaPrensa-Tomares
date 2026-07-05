@@ -1,6 +1,6 @@
 /* ===== TOKENS ===== */
 :root {
-  --paper: #F8F9FB;
+  --paper: #FFFFFF;
   --ink: #1C2B3A;
   --blue: #234C73;
   --blue-light: #35688F;
@@ -110,7 +110,7 @@ nav .links a:hover { opacity: 1; }
 .eyebrow::before {
   content: ''; display: inline-block;
   width: 8px; height: 8px;
-  background: var(--blue); border-radius: 50%;
+  background: var(--red); border-radius: 50%;
 }
 .hero .eyebrow { color: #fff; }
 
@@ -222,7 +222,8 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
 
 /* Featured card — recogida y entrega de paquetes */
 .service-card.is-featured {
-  background: var(--blue); color: var(--paper);
+  background: var(--red); color: #fff;
+  box-shadow: inset 0 4px 0 var(--blue);
 }
 .service-card.is-featured .tag { color: var(--tint); opacity: 0.85; }
 .service-card.is-featured h3 { color: var(--paper); }
@@ -269,7 +270,7 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
 .rating-summary .big-score {
   font-family: 'Fraunces', serif; font-weight: 700; font-size: 3.4rem; line-height: 1; color: var(--blue);
 }
-.rating-summary .rs-detail .stars { color: var(--blue); font-size: 1.1rem; letter-spacing: 2px; }
+.rating-summary .rs-detail .stars { color: var(--red); font-size: 1.1rem; letter-spacing: 2px; }
 .rating-summary .rs-detail p { font-size: 0.9rem; color: rgba(28, 43, 58, 0.6); margin-top: 4px; }
 
 .reviews {
@@ -278,7 +279,7 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
   border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
 }
 .review-card { background: var(--paper); padding: 28px 26px; }
-.review-card .stars { color: var(--blue); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 12px; display: block; }
+.review-card .stars { color: var(--red); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 12px; display: block; }
 .review-card p.quote { font-size: 0.95rem; color: var(--ink); margin-bottom: 14px; }
 .review-card .author {
   font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
@@ -511,6 +512,8 @@ footer .credit a:hover { color: var(--blue); }
   .hours-wrap { grid-template-columns: 1fr; }
   .info-strip { grid-template-columns: repeat(2, 1fr); }
   .info-strip .info-item:nth-child(2) { border-right: none; }
+  .reserve-grid { grid-template-columns: 1fr; }
+  .reserve-summary { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 560px) {
