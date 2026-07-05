@@ -192,9 +192,7 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
   font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; margin-bottom: 4px;
 }
 .info-strip .info-item p { font-size: 0.85rem; color: rgba(28, 43, 58, 0.6); }
-.info-strip .info-item.is-featured { background: var(--tint); }
-.info-strip .info-item.is-featured h4 { color: var(--blue); }
-.info-strip .info-item.is-featured .marker { background: var(--red); }
+.info-strip .info-item h4 { color: rgba(0, 0, 0, 0.6); }
 
 /* ===== SECTION HEADS ===== */
 .section-head { margin-bottom: 48px; text-align: center; }
