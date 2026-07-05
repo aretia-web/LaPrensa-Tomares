@@ -133,8 +133,25 @@ document.querySelectorAll('.reserve-carousel').forEach(carousel => {
     track.scrollBy({ left: direction * (cardWidth + 16) * 2, behavior: 'smooth' });
   }
 
+  function updateArrows() {
+    const hasOverflow = track.scrollWidth > track.clientWidth + 1;
+
+    if (!hasOverflow) {
+      prevArrow.hidden = true;
+      nextArrow.hidden = true;
+      return;
+    }
+
+    prevArrow.hidden = track.scrollLeft <= 0;
+    nextArrow.hidden = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+  }
+
   prevArrow.addEventListener('click', () => scrollTrack(-1));
   nextArrow.addEventListener('click', () => scrollTrack(1));
+  track.addEventListener('scroll', updateArrows);
+  window.addEventListener('resize', updateArrows);
+
+  updateArrows();
 });
 
 /* ===== BOTÓN FLOTANTE "VER RESERVA" ===== */
