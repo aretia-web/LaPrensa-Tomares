@@ -333,6 +333,7 @@ h1 em { font-style: italic; font-weight: 400; color: #fff; opacity: 0.9; }
 .contact-link:hover { border-color: var(--blue); }
 .contact-link .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
 .contact-link .dot.fb { background: #1877F2; }
+.contact-link .dot.in { background: #f22e18; }
 
 .map-frame {
   border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
