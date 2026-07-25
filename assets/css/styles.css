@@ -363,11 +363,37 @@ form button:disabled { opacity: 0.5; cursor: not-allowed; }
 /* ===== RESERVA DE PRODUCTOS ===== */
 .reserve-layout { display: flex; flex-direction: column; gap: 28px; }
 
-.reserve-categories { display: flex; flex-direction: column; gap: 30px; }
+.reserve-categories { display: flex; flex-direction: column; gap: 36px; }
+
+/* Título de grupo principal (Alimentación, Droguería, Perfumería...) */
+.reserve-group-title {
+  font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.3rem;
+  color: var(--blue); padding-bottom: 10px; margin-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Subapartados dentro de un grupo (p.ej. Básicos, Bebidas dentro de Alimentación) */
+.reserve-subgroups { display: flex; flex-direction: column; gap: 24px; }
+
 .reserve-category .category-title {
   font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.05rem;
   color: var(--ink); border-left: 3px solid var(--blue);
   padding-left: 12px; margin-bottom: 14px;
+}
+
+/* Bloque explicativo del servicio con proveedor de Amazon */
+.amazon-block {
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--tint); padding: 36px 40px; margin-bottom: 20px;
+}
+.amazon-block .eyebrow { justify-content: flex-start; margin-bottom: 12px; }
+.amazon-block h3 {
+  font-family: 'Fraunces', serif; font-weight: 600; font-size: 1.4rem;
+  color: var(--ink); margin-bottom: 12px;
+}
+.amazon-block p { color: rgba(28, 43, 58, 0.7); max-width: 68ch; font-size: 0.98rem; }
+.amazon-block .amazon-note {
+  margin-top: 14px; font-size: 0.85rem; color: rgba(28, 43, 58, 0.55); font-style: italic;
 }
 
 /* Catálogo: carrusel horizontal, flechas en el flujo normal */
@@ -502,12 +528,17 @@ form button:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 .floating-reserve-btn:hover { background: var(--red-light); }
 .floating-reserve-btn:active { transform: translateY(1px); }
+.floating-reserve-btn--store { bottom: 24px; }
+.floating-reserve-btn--amazon { bottom: 84px; background: var(--blue); }
+.floating-reserve-btn--amazon:hover { background: var(--blue-light); }
 .floating-reserve-count {
   background: rgba(255, 255, 255, 0.25);
   border-radius: 999px; padding: 2px 9px; font-size: 0.85rem;
 }
 @media (max-width: 600px) {
-  .floating-reserve-btn { bottom: 16px; right: 16px; padding: 12px 18px; font-size: 0.88rem; }
+  .floating-reserve-btn { right: 16px; padding: 12px 18px; font-size: 0.88rem; }
+  .floating-reserve-btn--store { bottom: 16px; }
+  .floating-reserve-btn--amazon { bottom: 72px; }
 }
 footer {
   padding: 40px 0;
@@ -522,6 +553,10 @@ footer .credit a { color: rgba(28, 43, 58, 0.55); text-decoration: none; font-we
 footer .credit a:hover { color: var(--blue); }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .services { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 800px) {
   .services { grid-template-columns: 1fr; }
   .reviews { grid-template-columns: 1fr; }
