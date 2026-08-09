@@ -17,156 +17,109 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-/* ===== SISTEMA DE RESERVA (reutilizable por zona) =====
-   Cada zona (tienda / pedido especial) tiene su propio carrito,
-   su propio formulario y su propio botón flotante, totalmente
-   independientes entre sí: no se pueden mezclar productos de
-   una zona con los de la otra en el mismo pedido. */
-function initReservationZone(sectionId, prefix) {
-  const section = document.getElementById(sectionId);
-  if (!section) return;
+/* ===== RESERVA DE PRODUCTOS (un único carrito para todo) ===== */
+const cart = {}; // { "Nombre producto": { qty, unit } }
+const rowsByProduct = {};
 
-  const cart = {}; // { "Nombre producto": { qty, unit } }
-  const rowsByProduct = {};
+const summaryList  = document.getElementById('summary-list');
+const emptyMsg      = document.getElementById('empty-msg');
+const cartCount      = document.getElementById('cart-count');
+const orderField    = document.getElementById('r-order');
+const submitBtn      = document.getElementById('reserve-submit');
 
-  const summaryList = document.getElementById(`${prefix}-summary-list`);
-  const emptyMsg     = document.getElementById(`${prefix}-empty-msg`);
-  const cartCount    = document.getElementById(`${prefix}-cart-count`);
-  const orderField   = document.getElementById(`${prefix}-r-order`);
-  const cartAnchor   = document.getElementById(`${prefix}-cart-anchor`);
-  const reserveForm  = document.getElementById(`${prefix}-reserve-form`);
-  const reserveError = document.getElementById(`${prefix}-reserve-error`);
-  const floatingBtn  = document.getElementById(`${prefix}-floating-btn`);
-  const floatingCount = document.getElementById(`${prefix}-floating-count`);
+function resetRow(name) {
+  const row = rowsByProduct[name];
+  if (!row) return;
+  row.addBtn.textContent = 'Añadir';
+  row.addBtn.classList.remove('is-added');
+  row.qty = 1;
+  row.valueEl.textContent = 1;
+  row.minusBtn.disabled = true;
+}
 
-  function resetRow(name) {
-    const row = rowsByProduct[name];
-    if (!row) return;
-    row.addBtn.textContent = 'Añadir';
-    row.addBtn.classList.remove('is-added');
-    row.qty = 1;
-    row.valueEl.textContent = 1;
-    row.minusBtn.disabled = true;
-  }
+function renderSummary() {
+  const entries = Object.entries(cart);
 
-  function updateFloatingButton() {
-    const totalItems = Object.keys(cart).length;
-    if (totalItems > 0) {
-      floatingBtn.hidden = false;
-      floatingCount.textContent = totalItems;
-    } else {
-      floatingBtn.hidden = true;
-    }
-  }
+  cartCount.textContent = entries.length === 1 ? '1 producto' : `${entries.length} productos`;
 
-  function renderSummary() {
-    const entries = Object.entries(cart);
-
-    cartCount.textContent = entries.length === 1 ? '1 producto' : `${entries.length} productos`;
-
-    if (entries.length === 0) {
-      summaryList.innerHTML = '';
-      emptyMsg.hidden = false;
-      orderField.value = '';
-      updateFloatingButton();
-      return;
-    }
-
-    emptyMsg.hidden = true;
-    summaryList.innerHTML = entries.map(([name, data]) => `
-      <li data-product="${name}">
-        <span class="item-name">${name}</span>
-        <span class="item-qty">${data.qty} ${data.unit}</span>
-        <button type="button" class="item-remove" aria-label="Quitar ${name} de la reserva">×</button>
-      </li>
-    `).join('');
-
-    summaryList.querySelectorAll('.item-remove').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const name = btn.closest('li').dataset.product;
-        delete cart[name];
-        resetRow(name);
-        renderSummary();
-      });
-    });
-
-    orderField.value = entries.map(([name, data]) => `${name} — ${data.qty} ${data.unit}`).join('\n');
+  if (entries.length === 0) {
+    summaryList.innerHTML = '';
+    emptyMsg.hidden = false;
+    orderField.value = '';
     updateFloatingButton();
+    return;
   }
 
-  section.querySelectorAll('.reserve-row').forEach(row => {
-    const name     = row.dataset.product;
-    const unit     = row.dataset.unit;
-    const addBtn   = row.querySelector('.qty-add');
-    const minusBtn = row.querySelector('.qty-minus');
-    const plusBtn  = row.querySelector('.qty-plus');
-    const valueEl  = row.querySelector('.qty-value');
+  emptyMsg.hidden = true;
+  summaryList.innerHTML = entries.map(([name, data]) => `
+    <li data-product="${name}">
+      <span class="item-name">${name}</span>
+      <span class="item-qty">${data.qty} ${data.unit}</span>
+      <button type="button" class="item-remove" aria-label="Quitar ${name} de la reserva">×</button>
+    </li>
+  `).join('');
 
-    const state = { qty: 1, addBtn, minusBtn, valueEl };
-    rowsByProduct[name] = state;
-
-    function syncCartIfAdded() {
-      if (cart[name]) {
-        cart[name].qty = state.qty;
-        renderSummary();
-      }
-    }
-
-    plusBtn.addEventListener('click', () => {
-      state.qty += 1;
-      valueEl.textContent = state.qty;
-      minusBtn.disabled = false;
-      syncCartIfAdded();
-    });
-
-    minusBtn.addEventListener('click', () => {
-      if (state.qty <= 1) return;
-      state.qty -= 1;
-      valueEl.textContent = state.qty;
-      minusBtn.disabled = state.qty <= 1;
-      syncCartIfAdded();
-    });
-
-    addBtn.addEventListener('click', () => {
-      if (cart[name]) {
-        delete cart[name];
-        addBtn.textContent = 'Añadir';
-        addBtn.classList.remove('is-added');
-      } else {
-        cart[name] = { qty: state.qty, unit };
-        addBtn.textContent = 'Quitar';
-        addBtn.classList.add('is-added');
-      }
+  summaryList.querySelectorAll('.item-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.closest('li').dataset.product;
+      delete cart[name];
+      resetRow(name);
       renderSummary();
     });
   });
 
-  floatingBtn.addEventListener('click', () => {
-    cartAnchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-
-  reserveForm.addEventListener('submit', (event) => {
-    const cartIsEmpty = Object.keys(cart).length === 0;
-
-    if (cartIsEmpty || !reserveForm.checkValidity()) {
-      event.preventDefault();
-      reserveError.hidden = false;
-    } else {
-      reserveError.hidden = true;
-    }
-  });
-
-  reserveForm.querySelectorAll('input').forEach(input => {
-    input.addEventListener('input', () => {
-      reserveError.hidden = true;
-    });
-  });
-
-  renderSummary();
+  orderField.value = entries.map(([name, data]) => `${name} — ${data.qty} ${data.unit}`).join('\n');
+  updateFloatingButton();
 }
 
-initReservationZone('reserva', 'store');
-initReservationZone('amazon', 'amazon');
+document.querySelectorAll('.reserve-row').forEach(row => {
+  const name     = row.dataset.product;
+  const unit     = row.dataset.unit;
+  const addBtn   = row.querySelector('.qty-add');
+  const minusBtn = row.querySelector('.qty-minus');
+  const plusBtn  = row.querySelector('.qty-plus');
+  const valueEl  = row.querySelector('.qty-value');
+
+  const state = { qty: 1, addBtn, minusBtn, valueEl };
+  rowsByProduct[name] = state;
+
+  function syncCartIfAdded() {
+    if (cart[name]) {
+      cart[name].qty = state.qty;
+      renderSummary();
+    }
+  }
+
+  plusBtn.addEventListener('click', () => {
+    state.qty += 1;
+    valueEl.textContent = state.qty;
+    minusBtn.disabled = false;
+    syncCartIfAdded();
+  });
+
+  minusBtn.addEventListener('click', () => {
+    if (state.qty <= 1) return;
+    state.qty -= 1;
+    valueEl.textContent = state.qty;
+    minusBtn.disabled = state.qty <= 1;
+    syncCartIfAdded();
+  });
+
+  addBtn.addEventListener('click', () => {
+    if (cart[name]) {
+      delete cart[name];
+      addBtn.textContent = 'Añadir';
+      addBtn.classList.remove('is-added');
+    } else {
+      cart[name] = { qty: state.qty, unit };
+      addBtn.textContent = 'Quitar';
+      addBtn.classList.add('is-added');
+    }
+    renderSummary();
+  });
+});
+
+renderSummary();
 
 /* ===== FLECHAS DE CADA MINI-PASARELA POR CATEGORÍA ===== */
 document.querySelectorAll('.reserve-carousel').forEach(carousel => {
@@ -198,4 +151,44 @@ document.querySelectorAll('.reserve-carousel').forEach(carousel => {
   window.addEventListener('resize', updateArrows);
 
   updateArrows();
+});
+
+/* ===== BOTÓN FLOTANTE "VER RESERVA" ===== */
+const floatingBtn = document.getElementById('floating-btn');
+const floatingCount = document.getElementById('floating-count');
+
+function updateFloatingButton() {
+  const totalItems = Object.keys(cart).length;
+  if (totalItems > 0) {
+    floatingBtn.hidden = false;
+    floatingCount.textContent = totalItems;
+  } else {
+    floatingBtn.hidden = true;
+  }
+}
+
+floatingBtn.addEventListener('click', () => {
+  document.getElementById('cart-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+/* ===== VALIDACIÓN DEL FORMULARIO DE RESERVA ===== */
+const reserveForm  = document.getElementById('reserve-form');
+const reserveError = document.getElementById('reserve-error');
+
+reserveForm.addEventListener('submit', (event) => {
+  const cartIsEmpty = Object.keys(cart).length === 0;
+
+  if (cartIsEmpty || !reserveForm.checkValidity()) {
+    event.preventDefault();
+    reserveError.hidden = false;
+  } else {
+    reserveError.hidden = true;
+  }
+});
+
+// Ocultamos el aviso en cuanto el cliente empieza a corregir los campos
+reserveForm.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', () => {
+    reserveError.hidden = true;
+  });
 });

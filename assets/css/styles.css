@@ -528,17 +528,12 @@ form button:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 .floating-reserve-btn:hover { background: var(--red-light); }
 .floating-reserve-btn:active { transform: translateY(1px); }
-.floating-reserve-btn--store { bottom: 24px; }
-.floating-reserve-btn--amazon { bottom: 84px; background: var(--blue); }
-.floating-reserve-btn--amazon:hover { background: var(--blue-light); }
 .floating-reserve-count {
   background: rgba(255, 255, 255, 0.25);
   border-radius: 999px; padding: 2px 9px; font-size: 0.85rem;
 }
 @media (max-width: 600px) {
-  .floating-reserve-btn { right: 16px; padding: 12px 18px; font-size: 0.88rem; }
-  .floating-reserve-btn--store { bottom: 16px; }
-  .floating-reserve-btn--amazon { bottom: 72px; }
+  .floating-reserve-btn { right: 16px; padding: 12px 18px; font-size: 0.88rem; bottom: 16px; }
 }
 footer {
   padding: 40px 0;

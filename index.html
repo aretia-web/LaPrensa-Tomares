@@ -798,31 +798,6 @@
           </div>
       </div>
     </div>
-
-      <div class="reserve-cart" id="store-cart-anchor">
-        <div class="reserve-cart-main">
-          <div class="reserve-cart-head">
-            <h3>Tu reserva en tienda</h3>
-            <span id="store-cart-count">0 productos</span>
-          </div>
-          <ul class="reserve-summary-list" id="store-summary-list"></ul>
-          <p class="reserve-empty" id="store-empty-msg">Todavía no has añadido ningún producto.</p>
-        </div>
-
-        <form id="store-reserve-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="e2390145-9940-473c-a70a-e7632bccad72">
-          <input type="hidden" name="subject" value="Nueva reserva en tienda — Minimarket La Prensa">
-          <input type="hidden" name="from_name" value="Web Minimarket La Prensa">
-          <label for="store-r-name">Nombre Completo</label>
-          <input type="text" id="store-r-name" name="nombre" placeholder="Tu nombre" required>
-          <label for="store-r-phone">Teléfono</label>
-          <input type="tel" id="store-r-phone" name="telefono" placeholder="Tu teléfono de contacto" required>
-          <input type="hidden" id="store-r-order" name="pedido">
-          <button type="submit" id="store-reserve-submit" class="btn btn-primary">Confirmar reserva</button>
-          <p class="reserve-error" id="store-reserve-error" hidden>Necesitas completar todos los campos para confirmar la reserva.</p>
-          <p class="reserve-note">Te confirmaremos la disponibilidad y el día de entrega por teléfono.</p>
-        </form>
-      </div>
     </div>
   </div>
 </section>
@@ -923,28 +898,28 @@
       </div>
     </div>
 
-    <div class="reserve-cart" id="amazon-cart-anchor">
+    <div class="reserve-cart" id="cart-anchor">
       <div class="reserve-cart-main">
         <div class="reserve-cart-head">
-          <h3>Tu pedido especial</h3>
-          <span id="amazon-cart-count">0 productos</span>
+          <h3>Tu reserva</h3>
+          <span id="cart-count">0 productos</span>
         </div>
-        <ul class="reserve-summary-list" id="amazon-summary-list"></ul>
-        <p class="reserve-empty" id="amazon-empty-msg">Todavía no has añadido ningún producto.</p>
+        <ul class="reserve-summary-list" id="summary-list"></ul>
+        <p class="reserve-empty" id="empty-msg">Todavía no has añadido ningún producto.</p>
       </div>
 
-      <form id="amazon-reserve-form" action="https://api.web3forms.com/submit" method="POST">
+      <form id="reserve-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="e2390145-9940-473c-a70a-e7632bccad72">
-        <input type="hidden" name="subject" value="Nuevo pedido especial (proveedor) — Minimarket La Prensa">
+        <input type="hidden" name="subject" value="Nueva reserva — Minimarket La Prensa">
         <input type="hidden" name="from_name" value="Web Minimarket La Prensa">
-        <label for="amazon-r-name">Nombre Completo</label>
-        <input type="text" id="amazon-r-name" name="nombre" placeholder="Tu nombre" required>
-        <label for="amazon-r-phone">Teléfono</label>
-        <input type="tel" id="amazon-r-phone" name="telefono" placeholder="Tu teléfono de contacto" required>
-        <input type="hidden" id="amazon-r-order" name="pedido">
-        <button type="submit" id="amazon-reserve-submit" class="btn btn-primary">Confirmar pedido especial</button>
-        <p class="reserve-error" id="amazon-reserve-error" hidden>Necesitas completar todos los campos para confirmar el pedido.</p>
-        <p class="reserve-note">Le confirmaremos el precio y el plazo de entrega por teléfono antes de tramitarlo.</p>
+        <label for="r-name">Nombre Completo</label>
+        <input type="text" id="r-name" name="nombre" placeholder="Tu nombre" required>
+        <label for="r-phone">Teléfono</label>
+        <input type="tel" id="r-phone" name="telefono" placeholder="Tu teléfono de contacto" required>
+        <input type="hidden" id="r-order" name="pedido">
+        <button type="submit" id="reserve-submit" class="btn btn-primary">Confirmar reserva</button>
+        <p class="reserve-error" id="reserve-error" hidden>Necesitas completar todos los campos para confirmar la reserva.</p>
+        <p class="reserve-note">Te confirmaremos la disponibilidad y el plazo de entrega por teléfono. Los productos bajo pedido especial pueden tardar hasta 48 horas.</p>
       </form>
     </div>
     </div>
@@ -1062,14 +1037,9 @@
   </div>
 </footer>
 
-<button id="store-floating-btn" class="floating-reserve-btn floating-reserve-btn--store" hidden>
-  Ver reserva en tienda
-  <span id="store-floating-count" class="floating-reserve-count">0</span>
-</button>
-
-<button id="amazon-floating-btn" class="floating-reserve-btn floating-reserve-btn--amazon" hidden>
-  Ver pedido especial
-  <span id="amazon-floating-count" class="floating-reserve-count">0</span>
+<button id="floating-btn" class="floating-reserve-btn" hidden>
+  Ver reserva
+  <span id="floating-count" class="floating-reserve-count">0</span>
 </button>
 
 <script src="assets/js/main.js"></script>
