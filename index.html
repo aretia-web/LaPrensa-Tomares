@@ -3,976 +3,308 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minimarket La Prensa — Tomares</title>
-<meta name="description" content="Minimarket La Prensa, en la Rotonda de la Era (Tomares). Alimentación, productos de primera necesidad y servicio de recogida y entrega de paquetería.">
+<title>Minimarket La Prensa · Tomares | Reserva y recoge en tienda</title>
+<meta name="description" content="Minimarket La Prensa, en la Rotonda de la Era (Tomares). Consulta el catálogo de la semana, reserva tus productos por la web y recógelos y págalos en la tienda. También paquetería y encargos.">
+<meta name="theme-color" content="#1B3CC4">
+<meta property="og:title" content="Minimarket La Prensa · Tomares">
+<meta property="og:description" content="Reserva por la web, recoge y paga en la tienda.">
+<meta property="og:image" content="assets/img/fachada.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon-512.png">
 <link rel="apple-touch-icon" href="assets/img/favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <div class="logo">La<span>Prensa</span></div>
-    <button class="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">☰</button>
-    <div class="links">
-      <a href="#reserva">Productos</a>
+<a class="skip-link" href="#catalogo">Saltar al catálogo</a>
+
+<div class="awning" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#inicio" aria-label="Minimarket La Prensa, inicio">
+      <img src="assets/img/logo-240.jpg" alt="" width="44" height="44">
+      <span class="brand-name">La Prensa <small>Minimarket en Tomares</small></span>
+    </a>
+    <nav class="mainnav" id="mainnav" aria-label="Principal">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#encargos">Encargos</a>
+      <a href="#paqueteria">Paquetería</a>
       <a href="#horario">Horario</a>
-      <a href="#opiniones">Opiniones</a>
-      <a href="#contacto" class="nav-cta">Cómo llegar</a>
-    </div>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Minimarket · Tomares</div>
-    <h1>Minimarket <em>La Prensa</em></h1>
-    <p class="hero-sub">
-      En la Rotonda de la Era, local 51, junto al banco BBVA. Alimentación,
-      productos de primera necesidad y servicio de recogida y entrega de
-      paquetería, con atención personalizada.
-    </p>
-
-    <div class="rating-pill">
-      <span class="stars">★★★★★</span>
-      <span class="stars">4,4</span>
-      <span class="count">· valoración de clientes en Google</span>
-    </div>
-
-    <div class="hero-ctas">
-      <span class="btn btn-primary">Llamar: 954 15 25 54</span>
-      <a href="#horario" class="btn btn-secondary">Ver horario</a>
-    </div>
-
-    <div class="info-strip">
-      <div class="info-item">
-        <div class="marker"></div>
-        <h4>Dirección</h4>
-        <p>Rotonda de la Era, local 51, Tomares</p>
-      </div>
-      <div class="info-item">
-        <div class="marker"></div>
-        <h4>Valoración</h4>
-        <p>4,4 / 5 en Google</p>
-      </div>
-      <div class="info-item">
-        <div class="marker"></div>
-        <h4>Teléfono</h4>
-        <p>954 15 25 54</p>
-      </div>
-      <div class="info-item is-featured">
-        <div class="marker"></div>
-        <h4>Paquetería</h4>
-        <p>Recogida y entrega de envíos</p>
-      </div>
-    </div>
+      <a href="#contacto">Cómo llegar</a>
+    </nav>
+    <button class="cart-toggle" type="button" data-open-cart aria-controls="cart" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16l-1.5 12.5a1.5 1.5 0 0 1-1.5 1.3H7a1.5 1.5 0 0 1-1.5-1.3L4 7Zm4 0V6a4 4 0 0 1 8 0v1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <span class="cart-toggle-label">Mi reserva</span>
+      <span class="cart-badge" data-cart-count>0</span>
+    </button>
+    <button class="menu-toggle" type="button" aria-controls="mainnav" aria-expanded="false" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<section id="productos">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Productos y servicios</div>
-      <h2>Todo lo que necesita, en un mismo lugar</h2>
-      <p>Amplia variedad de productos de alimentación y de primera necesidad, además de servicios adicionales para el día a día.</p>
-    </div>
-    <div class="services">
-      <div class="service-card is-featured">
-        <span class="tag">Servicio</span>
-        <h3>Recogida y entrega de paquetes</h3>
-        <p>Gestionamos sus envíos de mensajería directamente en el establecimiento.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">Cada día</span>
-        <h3>Pan y panadería</h3>
-        <p>Pan fresco del día.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">Fresco</span>
-        <h3>Fruta y verdura</h3>
-        <p>Producto fresco de temporada.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">Disponible</span>
-        <h3>Bebidas y chucherías</h3>
-        <p>Amplio surtido siempre disponible.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">A diario</span>
-        <h3>Prensa</h3>
-        <p>Periódicos y revistas de actualidad, cada día.</p>
-      </div>
-      <div class="service-card">
-        <span class="tag">Básicos</span>
-        <h3>Productos de primera necesidad</h3>
-        <p>Todo lo esencial, siempre en existencias.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<main id="inicio">
 
-<section id="paqueteria" style="border-bottom:none;">
-  <div class="wrap">
-    <div class="parcel-card">
-      <div class="parcel-head">
-        <span class="eyebrow">Servicio destacado</span>
-        <h3>Recogida y entrega de paquetes</h3>
-        <p>Gestionamos la recepción y entrega de sus envíos de mensajería directamente en el establecimiento, para que pueda recogerlos cuando le venga bien, sin esperar en casa.</p>
+  <!-- ===== PORTADA ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="open-status" id="open-status" aria-live="polite">
+          <span class="status-dot"></span><span class="status-text">Rotonda de la Era, Tomares</span>
+        </p>
+        <h1>Reserva desde casa. Recoge y paga en la tienda.</h1>
+        <p class="hero-sub">
+          Mira lo que tenemos esta semana, aparta lo que necesites y pásate a por ello
+          cuando te venga bien. Sin pagar por internet y sin colas.
+        </p>
+        <div class="hero-actions">
+          <a href="#catalogo" class="btn btn-light">Ver el catálogo</a>
+          <a href="tel:+34954152554" class="btn btn-ghost">Llamar al 954 15 25 54</a>
+        </div>
       </div>
-      <div class="parcel-steps">
-        <div class="parcel-step">
-          <span class="ps-num">1</span>
+      <figure class="hero-photo">
+        <picture>
+          <source srcset="assets/img/fachada.webp" type="image/webp">
+          <img src="assets/img/fachada.jpg" width="1200" height="900" alt="Fachada azul de Minimarket La Prensa, con su escaparate cuadriculado y el rótulo de helados, golosinas, bebidas, revistas, regalos y bazar">
+        </picture>
+        <figcaption>Local 51, junto al BBVA</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== CÓMO FUNCIONA ===== -->
+  <section class="steps" aria-labelledby="steps-title">
+    <div class="wrap">
+      <h2 id="steps-title" class="visually-hidden">Cómo funciona la reserva</h2>
+      <ol class="steps-list">
+        <li>
+          <span class="step-n" aria-hidden="true">1</span>
           <div>
-            <strong>Su paquete llega a la tienda</strong>
-            <p>La mensajería entrega el envío directamente en el establecimiento.</p>
+            <h3>Elige</h3>
+            <p>Añade al carrito lo que quieres del catálogo de la semana.</p>
           </div>
-        </div>
-        <div class="parcel-step">
-          <span class="ps-num">2</span>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">2</span>
           <div>
-            <strong>Se lo guardamos</strong>
-            <p>Su pedido queda en el mostrador, listo para cuando pueda pasar.</p>
+            <h3>Reserva</h3>
+            <p>Déjanos tu nombre, tu teléfono y el día que vas a pasar.</p>
           </div>
-        </div>
-        <div class="parcel-step">
-          <span class="ps-num">3</span>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">3</span>
           <div>
-            <strong>Lo recoge cuando quiera</strong>
-            <p>En nuestro horario habitual, sin cita previa ni esperas en casa.</p>
+            <h3>Recoge y paga</h3>
+            <p>Te lo tenemos preparado en el mostrador. Pagas allí, en efectivo o con tarjeta.</p>
           </div>
-        </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== CATÁLOGO ===== -->
+  <section class="catalog" id="catalogo" aria-labelledby="catalog-title">
+    <div class="wrap">
+      <div class="section-intro">
+        <h2 id="catalog-title">Catálogo de la semana</h2>
+        <p class="catalog-updated" id="catalog-updated" hidden></p>
+      </div>
+
+      <div class="catalog-tools">
+        <label class="search">
+          <span class="visually-hidden">Buscar un producto</span>
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="search" id="catalog-search" placeholder="Busca leche, pan, detergente…" autocomplete="off">
+        </label>
+        <div class="chips" id="catalog-chips" role="group" aria-label="Filtrar por categoría"></div>
+      </div>
+
+      <p class="catalog-count" id="catalog-count" aria-live="polite"></p>
+      <div class="shelf" id="catalog-grid">
+        <p class="shelf-loading">Cargando el catálogo…</p>
       </div>
     </div>
+  </section>
 
-    <div class="couriers-card">
-      <div class="couriers-head">
-        <span class="eyebrow">Con quién trabajamos</span>
-        <h3>Empresas de paquetería</h3>
-        <p>Recibimos y gestionamos envíos de las principales empresas de mensajería y transporte.</p>
-      </div>
-      <img class="couriers-img" src="assets/img/paqueteria-empresas.png" alt="Logotipos de las empresas de paquetería con las que trabaja Minimarket La Prensa: UPS, CTT Express, DHL, Correos/Correos Express, MRW, SEUR, InPost/Mondial Relay, Amazon Hub y Nacex">
-    </div>
-  </div>
-</section>
-
-<section id="reserva">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Productos en tienda</div>
-      <h2>Reserva tus productos</h2>
-      <p>Estos son los productos que tenemos en La Prensa. Elige lo que quieras reservar y confirma tu pedido; te avisaremos cuando esté listo para recoger.</p>
-    </div>
-    <div class="reserve-layout">
-    <div class="reserve-categories">
-      <div class="reserve-group">
-        <h3 class="reserve-group-title">Alimentación</h3>
-        <div class="reserve-subgroups">
-        <div class="reserve-category">
-          <h4 class="category-title">Básicos</h4>
-          <div class="reserve-carousel">
-            <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Básicos">‹</button>
-            <div class="reserve-catalog">
-            <div class="reserve-row" data-product="Leche entera 1L" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Leche entera 1L</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Huevos (docena)" data-unit="docena">
-              <div class="rr-info">
-                <h3>Huevos</h3>
-                <p class="unit">Por docena</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Pan de horno" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Pan de horno</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Fruta de temporada" data-unit="kg">
-              <div class="rr-info">
-                <h3>Fruta de temporada</h3>
-                <p class="unit">Por kilo</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Verdura de temporada" data-unit="kg">
-              <div class="rr-info">
-                <h3>Verdura de temporada</h3>
-                <p class="unit">Por kilo</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-            </div>
-            <button type="button" class="carousel-arrow next" aria-label="Ver más de Básicos">›</button>
-          </div>
+  <!-- ===== ENCARGOS ===== -->
+  <section class="orders" id="encargos" aria-labelledby="orders-title">
+    <div class="wrap">
+      <div class="orders-head">
+        <div>
+          <h2 id="orders-title">¿No lo tenemos? Te lo pedimos.</h2>
+          <p>
+            Trabajamos con un proveedor que nos sirve casi cualquier producto en unas 48 horas.
+            Antes de pedirlo te llamamos para confirmarte precio y plazo, y lo pagas al recogerlo.
+          </p>
         </div>
-
-        <div class="reserve-category">
-          <h4 class="category-title">Bebidas</h4>
-          <div class="reserve-carousel">
-            <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Bebidas">‹</button>
-            <div class="reserve-catalog">
-            <div class="reserve-row" data-product="Agua mineral 1,5L (pack 6)" data-unit="pack">
-              <div class="rr-info">
-                <h3>Agua mineral 1,5L</h3>
-                <p class="unit">Pack de 6</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Refrescos variados (pack 6)" data-unit="pack">
-              <div class="rr-info">
-                <h3>Refrescos variados</h3>
-                <p class="unit">Pack de 6</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Zumo de naranja 1L" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Zumo de naranja 1L</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-            </div>
-            <button type="button" class="carousel-arrow next" aria-label="Ver más de Bebidas">›</button>
+        <form class="custom-order" id="custom-order">
+          <label for="custom-order-input">¿Qué necesitas?</label>
+          <div class="custom-order-row">
+            <input type="text" id="custom-order-input" placeholder="Por ejemplo: cartucho de tinta HP 305" maxlength="120" required>
+            <button type="submit" class="btn btn-primary">Añadir a mi reserva</button>
           </div>
-        </div>
-
-        <div class="reserve-category">
-          <h4 class="category-title">Alcohol y vinos</h4>
-          <div class="reserve-carousel">
-            <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Alcohol y vinos">‹</button>
-            <div class="reserve-catalog">
-            <div class="reserve-row" data-product="Cerveza (pack 6)" data-unit="pack">
-              <div class="rr-info">
-                <h3>Cerveza</h3>
-                <p class="unit">Pack de 6</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Vino tinto Rioja" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Vino tinto Rioja</h3>
-                <p class="unit">Por botella</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Vino blanco" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Vino blanco</h3>
-                <p class="unit">Por botella</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-            </div>
-            <button type="button" class="carousel-arrow next" aria-label="Ver más de Alcohol y vinos">›</button>
-          </div>
-        </div>
-        </div>
-      </div>
-
-      <div class="reserve-category">
-          <h3 class="reserve-group-title">Droguería y Perfumería</h3>
-          <div class="reserve-carousel">
-            <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Droguería y Perfumería">‹</button>
-            <div class="reserve-catalog">
-            <div class="reserve-row" data-product="Detergente para lavadora" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Detergente lavadora</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Papel higiénico (pack 12)" data-unit="pack">
-              <div class="rr-info">
-                <h3>Papel higiénico</h3>
-                <p class="unit">Pack de 12</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Suavizante para la ropa" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Suavizante para la ropa</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Lejía" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Lejía</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Friegasuelos" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Friegasuelos</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Lavavajillas a mano" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Lavavajillas a mano</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Pastillas para el lavavajillas" data-unit="pack">
-              <div class="rr-info">
-                <h3>Pastillas lavavajillas</h3>
-                <p class="unit">Pack</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Bayetas" data-unit="pack">
-              <div class="rr-info">
-                <h3>Bayetas</h3>
-                <p class="unit">Pack de 3</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Bolsas de basura" data-unit="pack">
-              <div class="rr-info">
-                <h3>Bolsas de basura</h3>
-                <p class="unit">Pack de 30</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Guantes de fregar" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Guantes de fregar</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Ambientador" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Ambientador</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Pañuelos de papel" data-unit="pack">
-              <div class="rr-info">
-                <h3>Pañuelos de papel</h3>
-                <p class="unit">Pack de 6</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Gel de ducha" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Gel de ducha</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Champú" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Champú</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Desodorante" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Desodorante</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Pasta de dientes" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Pasta de dientes</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Cuchillas de afeitar" data-unit="pack">
-              <div class="rr-info">
-                <h3>Cuchillas de afeitar</h3>
-                <p class="unit">Pack</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-            </div>
-            <button type="button" class="carousel-arrow next" aria-label="Ver más de Droguería y Perfumería">›</button>
-          </div>
-      </div>
-
-      <div class="reserve-category">
-          <h3 class="reserve-group-title">Comida y accesorios para animales</h3>
-          <div class="reserve-carousel">
-            <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores de Comida y accesorios para animales">‹</button>
-            <div class="reserve-catalog">
-            <div class="reserve-row" data-product="Correa para perro" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Correa para perro</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Arena para gatos" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Arena para gatos</h3>
-                <p class="unit">Por bolsa</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Comedero para mascotas" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Comedero para mascotas</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Juguete para perro" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Juguete para perro</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-            </div>
-            <button type="button" class="carousel-arrow next" aria-label="Ver más de Comida y accesorios para animales">›</button>
-          </div>
-      </div>
-    </div>
-
-      <div class="reserve-cart" id="store-cart-anchor">
-        <div class="reserve-cart-main">
-          <div class="reserve-cart-head">
-            <h3>Tu reserva en tienda</h3>
-            <span id="store-cart-count">0 productos</span>
-          </div>
-          <ul class="reserve-summary-list" id="store-summary-list"></ul>
-          <p class="reserve-empty" id="store-empty-msg">Todavía no has añadido ningún producto.</p>
-        </div>
-
-        <form id="store-reserve-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="e2390145-9940-473c-a70a-e7632bccad72">
-          <input type="hidden" name="subject" value="Nueva reserva en tienda — Minimarket La Prensa">
-          <input type="hidden" name="from_name" value="Web Minimarket La Prensa">
-          <label for="store-r-name">Nombre Completo</label>
-          <input type="text" id="store-r-name" name="nombre" placeholder="Tu nombre" required>
-          <label for="store-r-phone">Teléfono</label>
-          <input type="tel" id="store-r-phone" name="telefono" placeholder="Tu teléfono de contacto" required>
-          <input type="hidden" id="store-r-order" name="pedido">
-          <button type="submit" id="store-reserve-submit" class="btn btn-primary">Confirmar reserva</button>
-          <p class="reserve-error" id="store-reserve-error" hidden>Necesitas completar todos los campos para confirmar la reserva.</p>
-          <p class="reserve-note">Te confirmaremos la disponibilidad y el día de entrega por teléfono.</p>
         </form>
       </div>
+      <h3 class="orders-sub">Algunos encargos habituales</h3>
+      <div class="shelf shelf--orders" id="orders-grid"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="amazon">
-  <div class="wrap">
-    <div class="amazon-block">
-      <span class="eyebrow">Pedidos especiales</span>
-      <h3>¿No lo tenemos en tienda? Se lo conseguimos</h3>
-      <p>Contamos con un proveedor logístico que nos permite tramitar pedidos de prácticamente cualquier producto, esté o no disponible en nuestras estanterías. Haga su pedido y recójalo cómodamente en el establecimiento en un plazo aproximado de 48 horas.</p>
-      <p class="amazon-note">Estos son solo algunos ejemplos disponibles esta semana; el catálogo se actualiza con frecuencia.</p>
+  <!-- ===== PAQUETERÍA ===== -->
+  <section class="parcels" id="paqueteria" aria-labelledby="parcels-title">
+    <div class="wrap parcels-grid">
+      <div>
+        <h2 id="parcels-title">Punto de recogida de paquetes</h2>
+        <p class="lead">
+          Si no vas a estar en casa, haz que tu envío llegue a la tienda. Te lo guardamos
+          en el mostrador y lo recoges en nuestro horario, sin cita.
+        </p>
+        <ul class="ticks">
+          <li>Recogida de paquetes de las principales mensajerías</li>
+          <li>Envío y devolución de tus pedidos online</li>
+          <li>Sin esperar en casa al repartidor</li>
+        </ul>
+      </div>
+      <figure class="couriers">
+        <img src="assets/img/paqueteria-empresas.png" width="477" height="382" loading="lazy" alt="Mensajerías con las que trabajamos: UPS, CTT Express, DHL, Correos y Correos Express, MRW, SEUR, InPost y Mondial Relay, Amazon Hub y Nacex">
+      </figure>
     </div>
+  </section>
 
-    <div class="reserve-layout">
-    <div class="reserve-categories">
-      <div class="reserve-category">
-        <h3 class="reserve-group-title">Ejemplos disponibles esta semana</h3>
-        <div class="reserve-carousel">
-          <button type="button" class="carousel-arrow prev" aria-label="Ver anteriores">‹</button>
-          <div class="reserve-catalog">
-            <div class="reserve-row" data-product="Auriculares inalámbricos" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Auriculares inalámbricos</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
+  <!-- ===== HORARIO ===== -->
+  <section class="hours" id="horario" aria-labelledby="hours-title">
+    <div class="wrap hours-grid">
+      <div>
+        <h2 id="hours-title">Horario</h2>
+        <p class="lead">Puedes recoger tu reserva en cualquier momento dentro de este horario.</p>
+      </div>
+      <table class="hours-table">
+        <caption class="visually-hidden">Horario de apertura</caption>
+        <tbody>
+          <tr data-days="1,2,3,4,5"><th scope="row">Lunes a viernes</th><td>8:30 a 15:00<br>18:00 a 21:00</td></tr>
+          <tr data-days="6"><th scope="row">Sábado</th><td>8:30 a 15:00</td></tr>
+          <tr data-days="0"><th scope="row">Domingo</th><td>9:00 a 15:00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-            <div class="reserve-row" data-product="Cargador USB-C" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Cargador USB-C</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Pilas AA (pack 4)" data-unit="pack">
-              <div class="rr-info">
-                <h3>Pilas AA</h3>
-                <p class="unit">Pack de 4</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Producto de limpieza especializado" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Producto de limpieza especializado</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-
-            <div class="reserve-row" data-product="Libro más vendido de la semana" data-unit="unidad">
-              <div class="rr-info">
-                <h3>Libro más vendido de la semana</h3>
-                <p class="unit">Por unidad</p>
-              </div>
-              <div class="rr-controls">
-                <div class="qty-stepper">
-                  <button type="button" class="qty-minus" aria-label="Quitar una unidad" disabled>−</button>
-                  <span class="qty-value">1</span>
-                  <button type="button" class="qty-plus" aria-label="Añadir una unidad">+</button>
-                </div>
-                <button type="button" class="qty-add">Añadir</button>
-              </div>
-            </div>
-          </div>
-          <button type="button" class="carousel-arrow next" aria-label="Ver más">›</button>
-        </div>
+  <!-- ===== OPINIONES ===== -->
+  <section class="reviews" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="reviews-head">
+        <h2 id="reviews-title">Lo que dicen en Google</h2>
+        <p class="score"><strong>4,4</strong> <span class="stars" aria-hidden="true">★★★★★</span><span class="visually-hidden">de 5 estrellas</span></p>
+      </div>
+      <div class="quotes">
+        <blockquote><p>Sole y Diego atienden a cada cliente con cercanía y paciencia, siempre dispuestos a ayudar.</p></blockquote>
+        <blockquote><p>Sorprende la variedad de productos: siempre se encuentra lo que se necesita.</p></blockquote>
+        <blockquote><p>Servicio rápido y una atención excelente, de negocio familiar.</p></blockquote>
       </div>
     </div>
+  </section>
 
-    <div class="reserve-cart" id="amazon-cart-anchor">
-      <div class="reserve-cart-main">
-        <div class="reserve-cart-head">
-          <h3>Tu pedido especial</h3>
-          <span id="amazon-cart-count">0 productos</span>
-        </div>
-        <ul class="reserve-summary-list" id="amazon-summary-list"></ul>
-        <p class="reserve-empty" id="amazon-empty-msg">Todavía no has añadido ningún producto.</p>
-      </div>
-
-      <form id="amazon-reserve-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="e2390145-9940-473c-a70a-e7632bccad72">
-        <input type="hidden" name="subject" value="Nuevo pedido especial (proveedor) — Minimarket La Prensa">
-        <input type="hidden" name="from_name" value="Web Minimarket La Prensa">
-        <label for="amazon-r-name">Nombre Completo</label>
-        <input type="text" id="amazon-r-name" name="nombre" placeholder="Tu nombre" required>
-        <label for="amazon-r-phone">Teléfono</label>
-        <input type="tel" id="amazon-r-phone" name="telefono" placeholder="Tu teléfono de contacto" required>
-        <input type="hidden" id="amazon-r-order" name="pedido">
-        <button type="submit" id="amazon-reserve-submit" class="btn btn-primary">Confirmar pedido especial</button>
-        <p class="reserve-error" id="amazon-reserve-error" hidden>Necesitas completar todos los campos para confirmar el pedido.</p>
-        <p class="reserve-note">Le confirmaremos el precio y el plazo de entrega por teléfono antes de tramitarlo.</p>
-      </form>
-    </div>
-    </div>
-  </div>
-</section>
-
-<section id="horario">
-  <div class="wrap">
-    <div class="section-head no-copy">
-      <div class="eyebrow">Horario</div>
-      <h2>Horario de apertura</h2>
-    </div>
-    <div class="hours-wrap">
-      <div class="hours-table">
-        <div class="hours-row">
-          <span class="day">Lunes a viernes</span>
-          <span class="time">08:30–15:00 · 18:00–21:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="day">Sábado</span>
-          <span class="time">08:30–15:00</span>
-        </div>
-        <div class="hours-row">
-          <span class="day">Domingo</span>
-          <span class="time">09:00–15:00</span>
-        </div>
-      </div>
-      <div class="hours-note">
-        <h3>Contacto directo</h3>
-        <p>Para consultar disponibilidad de producto, horario o el servicio de paquetería.</p>
-        <span class="phone-link">
-          <span class="label">Llamar por teléfono</span>
-          954 15 25 54
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="opiniones">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Opiniones de clientes</div>
-      <h2>Valoración de nuestros clientes en Google</h2>
-    </div>
-
-    <div class="rating-summary">
-      <div class="big-score">4,4</div>
-      <div class="rs-detail">
-        <div class="stars">★★★★★</div>
-        <p>Valoración media según las reseñas de Google</p>
-      </div>
-    </div>
-
-    <div class="reviews">
-      <div class="review-card">
-        <span class="stars">★★★★★</span>
-        <p class="quote">Sole y Diego atienden a cada cliente con cercanía y paciencia, siempre dispuestos a ayudar.</p>
-        <span class="author">Reseña de cliente</span>
-      </div>
-      <div class="review-card">
-        <span class="stars">★★★★★</span>
-        <p class="quote">Sorprende la variedad de productos disponibles: siempre se encuentra lo que se necesita.</p>
-        <span class="author">Reseña de cliente</span>
-      </div>
-      <div class="review-card">
-        <span class="stars">★★★★★</span>
-        <p class="quote">Servicio rápido y una atención al cliente excelente, propia de un negocio familiar.</p>
-        <span class="author">Reseña de cliente</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contacto" style="border-bottom:none;">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Cómo llegar</div>
-      <h2>Te esperamos en la Rotonda de la Era</h2>
-      <p>Local 51, junto al banco BBVA, en Tomares.</p>
-    </div>
-    <div class="contact-grid">
+  <!-- ===== CONTACTO ===== -->
+  <section class="contact" id="contacto" aria-labelledby="contact-title">
+    <div class="wrap contact-grid">
       <div class="contact-info">
-        <h3>Ponte en contacto</h3>
-        <p>Si quieres confirmar algo antes de venir —un producto, el horario o un envío— la forma más rápida es llamarnos o escribirnos por Facebook.</p>
-        <div class="contact-links">
-          <a class="contact-link" href="tel:954152554">
-            <span class="dot"></span> 954 15 25 54
-          </a>
-          <a class="contact-link" href="https://www.facebook.com/KioscoDeSole" target="_blank" rel="noopener">
-            <span class="dot fb"></span> Facebook — KioscoDeSole
-          </a>
-          <a class="contact-link" href="https://www.instagram.com/minimarketlaprensa/" target="_blank" rel="noopener">
-            <span class="dot in"></span> Instagram — KioscoDeSole
-          </a>
-        </div>
+        <h2 id="contact-title">Cómo llegar</h2>
+        <address>
+          Rotonda de la Era, local 51<br>
+          Junto al banco BBVA<br>
+          41940 Tomares, Sevilla
+        </address>
+        <ul class="contact-links">
+          <li><a href="tel:+34954152554">954 15 25 54</a></li>
+          <li><a href="https://www.google.com/maps/dir/?api=1&destination=Minimarket+La+Prensa+Tomares" target="_blank" rel="noopener">Abrir ruta en Google Maps</a></li>
+          <li><a href="https://www.instagram.com/minimarketlaprensa/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/KioscoDeSole" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
       </div>
       <div class="map-frame">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3054.8553025890214!2d-6.045469324274142!3d37.37932087208763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd126c94c0287351%3A0x179b8787e7fd3353!2sMinimarket%20La%20Prensa!5e1!3m2!1ses!2ses!4v1784870821877!5m2!1ses!2ses"
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          title="Mapa — Minimarket La Prensa, Rotonda de la Era, Local 51, Tomares">
+          title="Mapa de Minimarket La Prensa en la Rotonda de la Era, Tomares">
         </iframe>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<footer>
-  <div class="wrap">
-    <div class="logo">La<span>Prensa</span></div>
-    <div>© 2026 Minimarket La Prensa · Tomares, Sevilla</div>
-    <div class="credit">Web por <a href="#" target="_blank" rel="noopener">Aretia</a></div>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <p class="footer-brand">La Prensa</p>
+    <p>Minimarket en Tomares, Sevilla. © <span id="year">2026</span></p>
+    <p class="credit">Web por Aretia</p>
   </div>
 </footer>
 
-<button id="store-floating-btn" class="floating-reserve-btn floating-reserve-btn--store" hidden>
-  Ver reserva en tienda
-  <span id="store-floating-count" class="floating-reserve-count">0</span>
+<!-- ===== BARRA MÓVIL ===== -->
+<button type="button" class="mobile-cartbar" data-open-cart hidden>
+  <span>Ver mi reserva</span>
+  <span class="mobile-cartbar-count"><span data-cart-count>0</span> productos</span>
 </button>
 
-<button id="amazon-floating-btn" class="floating-reserve-btn floating-reserve-btn--amazon" hidden>
-  Ver pedido especial
-  <span id="amazon-floating-count" class="floating-reserve-count">0</span>
-</button>
+<!-- ===== PANEL DE RESERVA ===== -->
+<div class="cart-backdrop" data-close-cart hidden></div>
+<aside class="cart" id="cart" aria-labelledby="cart-title" aria-hidden="true" tabindex="-1">
+  <div class="cart-head">
+    <h2 id="cart-title">Mi reserva</h2>
+    <button type="button" class="cart-close" data-close-cart aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
 
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty" id="cart-empty">
+      <p><strong>Todavía no has añadido nada.</strong></p>
+      <p>Pulsa «Añadir» en cualquier producto del catálogo y aparecerá aquí.</p>
+      <button type="button" class="btn btn-primary" data-close-cart data-goto="#catalogo">Ir al catálogo</button>
+    </div>
+
+    <div id="cart-filled" hidden>
+      <ul class="cart-list" id="cart-list"></ul>
+
+      <form class="cart-form" id="reserve-form" novalidate>
+        <div class="field">
+          <label for="r-name">Nombre</label>
+          <input type="text" id="r-name" name="nombre" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="r-phone">Teléfono</label>
+          <input type="tel" id="r-phone" name="telefono" autocomplete="tel" inputmode="tel" required pattern="[0-9 +]{9,15}">
+        </div>
+        <div class="field">
+          <label for="r-day">¿Cuándo pasarás a recogerlo?</label>
+          <select id="r-day" name="recogida" required></select>
+        </div>
+        <div class="field">
+          <label for="r-notes">Comentarios <span class="optional">(opcional)</span></label>
+          <textarea id="r-notes" name="comentarios" rows="2" maxlength="400"></textarea>
+        </div>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <button type="submit" class="btn btn-primary btn-block" id="reserve-submit">Enviar reserva</button>
+        <p class="form-note">No pagas nada ahora. Te llamaremos si algún producto no está disponible.</p>
+      </form>
+    </div>
+
+    <div class="cart-done" id="cart-done" hidden>
+      <p class="done-title">Reserva enviada</p>
+      <p id="done-text">Te la tenemos preparada. Si hay algún cambio, te llamamos.</p>
+      <button type="button" class="btn btn-primary" data-close-cart>Cerrar</button>
+    </div>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+<script src="assets/js/config.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
