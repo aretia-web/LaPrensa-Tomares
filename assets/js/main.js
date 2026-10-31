@@ -358,6 +358,7 @@
     const entries = cartEntries();
     const units = cartUnits();
     $$('[data-cart-count]').forEach((el) => { el.textContent = units; });
+    $$('[data-cart-label]').forEach((el) => { el.textContent = units === 1 ? '1 producto' : `${units} productos`; });
     $('.cart-toggle').classList.toggle('has-items', units > 0);
     mobileBar.hidden = units === 0;
 
