@@ -89,7 +89,6 @@
   let products = [];
   const byId = new Map();
   let cart = loadCart();
-  let activeCategory = 'todo';
   let query = '';
 
   function loadCart() {
@@ -115,13 +114,42 @@
   const grid = $('#catalog-grid');
   const ordersGrid = $('#orders-grid');
   const chipsEl = $('#catalog-chips');
+  const navEl = $('#cat-nav');
   const countEl = $('#catalog-count');
+  const searchEl = $('#catalog-search');
+
+  /* Iconos por categoría (se eligen por palabras clave del nombre). */
+  const svg = (d) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+  const ICONS = [
+    [/destacad/, svg('<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9Z"/>')],
+    [/basic|aliment|despensa|pan|lacte/, svg('<path d="M4 10h16l-1.6 9.2a1.5 1.5 0 0 1-1.5 1.3H7.1a1.5 1.5 0 0 1-1.5-1.3Z"/><path d="m8 10 3-6M16 10l-3-6M9 14v3M12 14v3M15 14v3"/>')],
+    [/alcohol|vino|cervez|licor/, svg('<path d="M8 3h8l-.6 6.2a3.4 3.4 0 0 1-6.8 0Z"/><path d="M12 13v7M8.5 20.5h7M8.4 7h7.2"/>')],
+    [/bebid|refresc|agua|zumo/, svg('<path d="M10 2.5h4M10.5 2.5v3.2L8.4 9a3 3 0 0 0-.4 1.5V20a1.5 1.5 0 0 0 1.5 1.5h5A1.5 1.5 0 0 0 16 20v-9.5a3 3 0 0 0-.4-1.5l-2.1-3.3V2.5"/><path d="M8 13h8"/>')],
+    [/drogu|limpi|perfum|higien|hogar/, svg('<path d="M9 8h5v2.5l2 2.6V20a1.5 1.5 0 0 1-1.5 1.5h-6A1.5 1.5 0 0 1 7 20v-6.9l2-2.6Z"/><path d="M9 8V5h4l3 1.5M13 5V3.5H9.5"/><path d="M7 15h9"/>')],
+    [/mascot|perro|gato|animal/, svg('<circle cx="6.5" cy="10" r="1.8"/><circle cx="17.5" cy="10" r="1.8"/><circle cx="9.5" cy="5.8" r="1.8"/><circle cx="14.5" cy="5.8" r="1.8"/><path d="M12 12c-3 0-5.5 3.6-5.5 5.8 0 1.6 1.3 2.4 2.8 2.1 1-.2 1.8-.6 2.7-.6s1.7.4 2.7.6c1.5.3 2.8-.5 2.8-2.1C17.5 15.6 15 12 12 12Z"/>')],
+    [/electr|tecno|movil|pila/, svg('<path d="M9 2.5v4M15 2.5v4M6.5 6.5h11v4a5.5 5.5 0 0 1-11 0Z"/><path d="M12 16v5.5"/>')],
+    [/libro|prensa|revista|papel/, svg('<path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5ZM20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5Z"/>')],
+    [/golosin|dulce|helad|snack/, svg('<circle cx="12" cy="12" r="4.5"/><path d="m7.8 10.4-4.3-2v7.2l4.3-2M16.2 10.4l4.3-2v7.2l-4.3-2"/>')],
+    [/regal|bazar/, svg('<rect x="4" y="9" width="16" height="4" rx="1"/><path d="M5.5 13v6.5A1.5 1.5 0 0 0 7 21h10a1.5 1.5 0 0 0 1.5-1.5V13M12 9v12M12 9C10.5 5 7 5 7 7s5 2 5 2Zm0 0c1.5-4 5-4 5-2s-5 2-5 2Z"/>')]
+  ];
+  const DEFAULT_ICON = svg('<path d="M5 8h14l-1.3 11.5a1.5 1.5 0 0 1-1.5 1.3H7.8a1.5 1.5 0 0 1-1.5-1.3Z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>');
+  const iconFor = (cat) => (ICONS.find(([re]) => re.test(fold(cat))) || [, DEFAULT_ICON])[1];
+
+  /* Cada categoría recibe un tono suave para su miniatura. */
+  const TINTS = ['cobalt', 'turquoise', 'amber', 'coral', 'green', 'violet'];
+  const tintMap = new Map();
+  const tintFor = (cat) => {
+    if (!tintMap.has(cat)) tintMap.set(cat, TINTS[tintMap.size % TINTS.length]);
+    return tintMap.get(cat);
+  };
+
+  const plusIcon = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
 
   function actionHtml(p) {
-    if (!p.available) return '<span class="item-out">Agotado esta semana</span>';
+    if (!p.available) return '<span class="item-out">Agotado</span>';
     const qty = cart[p.id]?.qty || 0;
     if (!qty) {
-      return `<button type="button" class="add-btn" data-add="${p.id}" aria-label="Añadir ${escapeHtml(p.name)} a la reserva">Añadir</button>`;
+      return `<button type="button" class="add-btn" data-add="${p.id}" aria-label="Añadir ${escapeHtml(p.name)} a la reserva">${plusIcon}<span>Añadir</span></button>`;
     }
     return `
       <div class="stepper" role="group" aria-label="Cantidad de ${escapeHtml(p.name)}">
@@ -135,23 +163,31 @@
     const cls = ['item'];
     if (p.featured) cls.push('is-featured');
     if (!p.available) cls.push('is-out');
-    if (p.image) cls.push('has-img');
+    if (cart[p.id]) cls.push('in-cart');
+    const thumb = p.image
+      ? `<img src="${escapeHtml(p.image)}" alt="" loading="lazy">`
+      : iconFor(p.category);
+    const price = p.price || (p.section === 'encargo' ? 'Precio a consultar' : '');
     return `
       <article class="${cls.join(' ')}" data-id="${p.id}">
-        ${p.image ? `<img class="item-img" src="${escapeHtml(p.image)}" alt="" loading="lazy">` : ''}
-        <p class="item-cat">${escapeHtml(p.category)}${p.featured ? '<span class="item-flag">Destacado</span>' : ''}</p>
-        <h3 class="item-name">${escapeHtml(p.name)}</h3>
-        ${p.format ? `<p class="item-format">${escapeHtml(p.format)}</p>` : ''}
-        <div class="item-foot">
-          <p class="item-price">${p.price ? escapeHtml(p.price) : (p.section === 'encargo' ? 'Precio a consultar' : '')}</p>
-          <div class="item-action">${actionHtml(p)}</div>
+        <div class="item-thumb tint-${tintFor(p.category)}${p.image ? ' has-img' : ''}">
+          ${thumb}
+          ${p.featured ? '<span class="item-flag">Destacado</span>' : ''}
+          ${!p.available ? '<span class="item-flag item-flag--out">Agotado</span>' : ''}
         </div>
+        <div class="item-body">
+          <h4 class="item-name">${escapeHtml(p.name)}</h4>
+          <p class="item-meta">${escapeHtml(p.format || p.category)}</p>
+          ${price ? `<p class="item-price">${escapeHtml(price)}</p>` : ''}
+        </div>
+        <div class="item-action">${actionHtml(p)}</div>
       </article>`;
   }
 
   function refreshCardAction(id) {
     const p = byId.get(id);
     if (!p) return;
+    $$(`.item[data-id="${id}"]`).forEach((card) => card.classList.toggle('in-cart', !!cart[id]));
     $$(`.item[data-id="${id}"] .item-action`).forEach((el) => {
       const hadFocus = el.contains(document.activeElement);
       const focusedStep = document.activeElement?.dataset?.step;
@@ -164,41 +200,62 @@
     });
   }
 
+  /* Grupos que se muestran: «Destacados» (si los hay) y una sección por categoría.
+     Las categorías no filtran: llevan a su sección, así se puede seguir bajando. */
+  function groupsFor(list, withFeatured) {
+    const groups = [];
+    const featured = list.filter((p) => p.featured && p.available);
+    if (withFeatured && featured.length) groups.push({ key: 'destacados', title: 'Destacados de la semana', items: featured });
+    const byCat = new Map();
+    list.forEach((p) => {
+      if (!byCat.has(p.category)) byCat.set(p.category, []);
+      byCat.get(p.category).push(p);
+    });
+    byCat.forEach((items, cat) => groups.push({ key: `cat-${slug(cat)}`, title: cat, items }));
+    return groups;
+  }
+
+  const storeProducts = () => products.filter((p) => p.section === 'tienda');
+
   function renderChips() {
-    const cats = [...new Set(products.filter((p) => p.section === 'tienda').map((p) => p.category))];
-    const hasFeatured = products.some((p) => p.section === 'tienda' && p.featured);
-    const chips = [['todo', 'Todo']];
-    if (hasFeatured) chips.push(['destacados', 'Destacados']);
-    cats.forEach((c) => chips.push([c, c]));
-    chipsEl.innerHTML = chips.map(([val, label]) =>
-      `<button type="button" class="chip" data-cat="${escapeHtml(val)}" aria-pressed="${val === activeCategory}">${escapeHtml(label)}</button>`
+    const groups = groupsFor(storeProducts(), true);
+    navEl.innerHTML = groups.map((g) => `
+      <a href="#${g.key}" class="cat-link" data-target="${g.key}">
+        <span class="cat-ico tint-${g.key === 'destacados' ? 'coral' : tintFor(g.title)}">${iconFor(g.key === 'destacados' ? 'destacados' : g.title)}</span>
+        <span class="cat-name">${escapeHtml(g.key === 'destacados' ? 'Destacados' : g.title)}</span>
+        <span class="cat-count">${g.items.length}</span>
+      </a>`).join('');
+    chipsEl.innerHTML = groups.map((g) =>
+      `<a href="#${g.key}" class="chip" data-target="${g.key}">${escapeHtml(g.key === 'destacados' ? 'Destacados' : g.title)}</a>`
     ).join('');
   }
 
   function renderCatalog() {
     const q = fold(query);
-    const list = products.filter((p) => {
-      if (p.section !== 'tienda') return false;
-      if (activeCategory === 'destacados' && !p.featured) return false;
-      if (!['todo', 'destacados'].includes(activeCategory) && p.category !== activeCategory) return false;
-      if (q && !fold(`${p.name} ${p.category} ${p.format}`).includes(q)) return false;
-      return true;
-    });
+    const all = storeProducts();
+    const list = q ? all.filter((p) => fold(`${p.name} ${p.category} ${p.format}`).includes(q)) : all;
+    document.body.classList.toggle('is-searching', !!q);
 
     if (!list.length) {
       grid.innerHTML = `
         <div class="shelf-empty">
+          <span class="shelf-empty-ico">${DEFAULT_ICON}</span>
           <p><strong>No encontramos «${escapeHtml(query)}» en el catálogo de esta semana.</strong></p>
-          <p>Podemos pedírtelo: añádelo como encargo y te llamamos con el precio.</p>
+          <p>Podemos pedírtelo a nuestro proveedor: añádelo como encargo y te llamamos con el precio.</p>
           <button type="button" class="btn btn-primary" data-encargo="${escapeHtml(query)}">Encargar «${escapeHtml(query)}»</button>
         </div>`;
     } else {
-      grid.innerHTML = list.map(cardHtml).join('');
+      grid.innerHTML = groupsFor(list, !q).map((g) => `
+        <section class="shelf-group" id="${g.key}" aria-labelledby="${g.key}-t">
+          <h3 class="shelf-title" id="${g.key}-t">${escapeHtml(g.title)} <span>${g.items.length}</span></h3>
+          <div class="shelf-items">${g.items.map(cardHtml).join('')}</div>
+        </section>`).join('');
     }
-    const total = products.filter((p) => p.section === 'tienda').length;
-    countEl.textContent = list.length === total
-      ? `${total} productos`
-      : `${list.length} de ${total} productos`;
+    countEl.textContent = q
+      ? `${list.length} ${list.length === 1 ? 'resultado' : 'resultados'} para «${query}»`
+      : `${all.length} productos en ${new Set(all.map((p) => p.category)).size} categorías`;
+    activeKey = '';
+    watchGroups();
   }
 
   function renderOrders() {
@@ -206,6 +263,36 @@
     ordersGrid.innerHTML = list.map(cardHtml).join('');
     $('.orders-sub').hidden = !list.length;
   }
+
+  /* Marca la categoría que se está viendo al hacer scroll. */
+  let activeKey = '';
+  function setActiveGroup(key) {
+    if (key === activeKey) return;
+    activeKey = key;
+    $$('[data-target]').forEach((a) => {
+      const on = a.dataset.target === key;
+      a.classList.toggle('is-active', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+    const chip = $(`.chip[data-target="${key}"]`, chipsEl);
+    if (chip) chipsEl.scrollTo({ left: chip.offsetLeft - 16, behavior: 'smooth' });
+  }
+  // La categoría activa es la última cuyo título ya ha pasado bajo el buscador fijo.
+  function watchGroups() {
+    const groups = $$('.shelf-group', grid);
+    if (!groups.length) return;
+    const line = parseFloat(getComputedStyle(groups[0]).scrollMarginTop) + 24;
+    let current = groups[0];
+    for (const g of groups) {
+      if (g.getBoundingClientRect().top <= line) current = g; else break;
+    }
+    setActiveGroup(current.id);
+  }
+  let spyFrame;
+  window.addEventListener('scroll', () => {
+    cancelAnimationFrame(spyFrame);
+    spyFrame = requestAnimationFrame(watchGroups);
+  }, { passive: true });
 
   async function loadCatalog() {
     const url = CFG.catalogoUrl || 'data/catalogo.csv';
@@ -255,6 +342,7 @@
       if (!p) return;
       setQty(p.id, 1, { name: p.name, format: p.format, price: p.price, section: p.section });
       toast(`${p.name} añadido a tu reserva`);
+      $$('.cart-badge').forEach((b) => { b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump'); });
       return;
     }
     const step = e.target.closest('[data-step]');
@@ -270,34 +358,51 @@
       $('#cart').focus();
       return;
     }
-    const chip = e.target.closest('.chip');
-    if (chip) {
-      activeCategory = chip.dataset.cat;
-      $$('.chip', chipsEl).forEach((c) => c.setAttribute('aria-pressed', c === chip));
-      renderCatalog();
+    const jump = e.target.closest('[data-target]');
+    if (jump) {
+      e.preventDefault();
+      if (query) setQuery('');
+      const target = document.getElementById(jump.dataset.target);
+      if (target) {
+        target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        setActiveGroup(jump.dataset.target);
+      }
       return;
     }
     const enc = e.target.closest('[data-encargo]');
     if (enc) {
       addCustom(enc.dataset.encargo);
-      $('#catalog-search').value = '';
-      query = '';
-      renderCatalog();
+      setQuery('');
     }
   });
 
+  function setQuery(value) {
+    searchEl.value = value;
+    query = value.trim();
+    $('#search-clear').hidden = !query;
+    renderCatalog();
+  }
+
   let searchTimer;
-  $('#catalog-search').addEventListener('input', (e) => {
+  searchEl.addEventListener('input', () => {
+    $('#search-clear').hidden = !searchEl.value;
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => {
-      query = e.target.value.trim();
-      if (query && activeCategory !== 'todo') {
-        activeCategory = 'todo';
-        $$('.chip', chipsEl).forEach((c) => c.setAttribute('aria-pressed', c.dataset.cat === 'todo'));
-      }
+      const wasEmpty = !query;
+      query = searchEl.value.trim();
       renderCatalog();
-    }, 120);
+      // Al empezar a buscar, sube al principio de los resultados
+      const tools = $('.catalog-tools');
+      if (query && wasEmpty && tools.getBoundingClientRect().top > 160) {
+        $('#catalogo .catalog-main').scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 150);
   });
+  searchEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && searchEl.value) { e.preventDefault(); setQuery(''); }
+    if (e.key === 'Enter') searchEl.blur();
+  });
+  $('#search-clear').addEventListener('click', () => { setQuery(''); searchEl.focus(); });
 
   function addCustom(text) {
     const name = String(text || '').trim();
@@ -384,6 +489,16 @@
           <button type="button" class="cart-line-remove" data-remove="${id}" aria-label="Quitar ${escapeHtml(it.name)} de la reserva">Quitar</button>
         </li>`).join('')}</ul></li>`;
     }).join('');
+
+    // Resumen lateral (escritorio)
+    $('#side-cart-empty').hidden = entries.length > 0;
+    $('#side-cart-btn').hidden = entries.length === 0;
+    $('#side-cart').classList.toggle('has-items', entries.length > 0);
+    const shown = entries.slice(0, 6);
+    $('#side-cart-list').innerHTML = shown.map(([, it]) =>
+      `<li><span class="side-qty">${it.qty}×</span> <span>${escapeHtml(it.name)}</span></li>`
+    ).join('') + (entries.length > shown.length ? `<li class="side-more">y ${entries.length - shown.length} más…</li>` : '');
+    $('#side-cart-btn').textContent = `Revisar y enviar (${units})`;
   }
 
   /* ---------- días de recogida ---------- */
