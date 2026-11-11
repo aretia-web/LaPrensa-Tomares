@@ -124,16 +124,10 @@
       </div>
 
       <div class="catalog-layout">
-        <aside class="catalog-side" aria-label="Categorías y resumen de la reserva">
+        <aside class="catalog-side" aria-label="Categorías">
           <p class="side-title">Categorías</p>
           <nav class="cat-nav" id="cat-nav" aria-label="Ir a una categoría"></nav>
-
-          <div class="side-cart" id="side-cart">
-            <p class="side-cart-title">Tu reserva</p>
-            <p class="side-cart-empty" id="side-cart-empty">Aún no has añadido nada. Pulsa <strong>+</strong> en un producto.</p>
-            <ul class="side-cart-list" id="side-cart-list"></ul>
-            <button type="button" class="btn btn-primary btn-block" data-open-cart id="side-cart-btn" hidden>Revisar y enviar</button>
-          </div>
+          <div class="cat-progress" aria-hidden="true"><span id="cat-progress"></span></div>
         </aside>
 
         <div class="catalog-main">

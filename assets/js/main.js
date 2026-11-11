@@ -219,8 +219,8 @@
 
   function renderChips() {
     const groups = groupsFor(storeProducts(), true);
-    navEl.innerHTML = groups.map((g) => `
-      <a href="#${g.key}" class="cat-link" data-target="${g.key}">
+    navEl.innerHTML = '<span class="cat-indicator" aria-hidden="true"></span>' + groups.map((g, i) => `
+      <a href="#${g.key}" class="cat-link" data-target="${g.key}" style="--i:${i}">
         <span class="cat-ico tint-${g.key === 'destacados' ? 'coral' : tintFor(g.title)}">${iconFor(g.key === 'destacados' ? 'destacados' : g.title)}</span>
         <span class="cat-name">${escapeHtml(g.key === 'destacados' ? 'Destacados' : g.title)}</span>
         <span class="cat-count">${g.items.length}</span>
@@ -276,7 +276,17 @@
     });
     const chip = $(`.chip[data-target="${key}"]`, chipsEl);
     if (chip) chipsEl.scrollTo({ left: chip.offsetLeft - 16, behavior: 'smooth' });
+    moveIndicator();
   }
+  function moveIndicator() {
+    const ind = $('.cat-indicator', navEl);
+    const link = $(`.cat-link[data-target="${activeKey}"]`, navEl);
+    if (!ind || !link || !link.offsetHeight) return;
+    ind.style.transform = `translateY(${link.offsetTop}px)`;
+    ind.style.height = `${link.offsetHeight}px`;
+    requestAnimationFrame(() => ind.classList.add('is-ready'));
+  }
+  window.addEventListener('resize', moveIndicator);
   // La categoría activa es la última cuyo título ya ha pasado bajo el buscador fijo.
   function watchGroups() {
     const groups = $$('.shelf-group', grid);
@@ -287,6 +297,14 @@
       if (g.getBoundingClientRect().top <= line) current = g; else break;
     }
     setActiveGroup(current.id);
+
+    // Barra de progreso: cuánto del catálogo has recorrido
+    const bar = $('#cat-progress');
+    if (bar) {
+      const r = grid.getBoundingClientRect();
+      const done = (line - r.top) / Math.max(1, r.height - innerHeight + line);
+      bar.style.transform = `scaleX(${Math.min(1, Math.max(0, done))})`;
+    }
   }
   let spyFrame;
   window.addEventListener('scroll', () => {
@@ -489,16 +507,6 @@
           <button type="button" class="cart-line-remove" data-remove="${id}" aria-label="Quitar ${escapeHtml(it.name)} de la reserva">Quitar</button>
         </li>`).join('')}</ul></li>`;
     }).join('');
-
-    // Resumen lateral (escritorio)
-    $('#side-cart-empty').hidden = entries.length > 0;
-    $('#side-cart-btn').hidden = entries.length === 0;
-    $('#side-cart').classList.toggle('has-items', entries.length > 0);
-    const shown = entries.slice(0, 6);
-    $('#side-cart-list').innerHTML = shown.map(([, it]) =>
-      `<li><span class="side-qty">${it.qty}×</span> <span>${escapeHtml(it.name)}</span></li>`
-    ).join('') + (entries.length > shown.length ? `<li class="side-more">y ${entries.length - shown.length} más…</li>` : '');
-    $('#side-cart-btn').textContent = `Revisar y enviar (${units})`;
   }
 
   /* ---------- días de recogida ---------- */
